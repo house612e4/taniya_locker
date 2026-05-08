@@ -16,7 +16,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;600;700&family=Poppins:wght@400;600&display=swap');
         
         body { 
-            font-family: 'Noto Sans Bengali', 'Poppins', sans-serif; 
+            font-family: 'Poppins', 'Noto Sans Bengali', sans-serif; 
             -webkit-tap-highlight-color: transparent; 
             background-color: #0f172a; 
             margin: 0; 
@@ -28,11 +28,11 @@
             color: white;
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
-            font-family: 'Noto Sans Bengali', 'Poppins', sans-serif;
+            font-family: 'Poppins', 'Noto Sans Bengali', sans-serif;
         }
         .glass-input::placeholder { 
             color: rgba(255, 255, 255, 0.4); 
-            font-family: 'Noto Sans Bengali', 'Poppins', sans-serif; 
+            font-family: 'Poppins', 'Noto Sans Bengali', sans-serif; 
         }
         .glass-input:focus { border-color: rgba(255, 255, 255, 0.4); outline: none; }
         .custom-scrollbar::-webkit-scrollbar { width: 0px; height: 0px; background: transparent; }
@@ -71,10 +71,26 @@
         const db = getFirestore(app);
         const appId = typeof __app_id !== 'undefined' ? __app_id : "taniya-locker-app";
 
+        const initialSeedDates = [
+            { id: "d1", title: "নাহিদা ইয়াছমিন তানিয়া এর জন্মদিন", type: "জন্মদিন", date: "1994-01-30" },
+            { id: "d2", title: "প্রথম বিবাহ বার্ষিকী", type: "বিবাহ বার্ষিকী", date: "2012-02-28" }
+        ];
+
         const toEnglishNumber = (str) => {
             if (!str) return '';
             const bengaliToEnglish = { '০': '0', '১': '1', '২': '2', '৩': '3', '৪': '4', '৫': '5', '৬': '6', '৭': '7', '৮': '8', '৯': '9' };
             return String(str).replace(/[০-৯]/g, match => bengaliToEnglish[match]);
+        };
+
+        const formatDisplayDate = (dateString) => {
+            if (!dateString) return { month: '', day: '' };
+            const parts = dateString.split('-');
+            if (parts.length !== 3) return { month: '', day: '' };
+            const dateObj = new Date(parts[0], parts[1] - 1, parts[2]);
+            return {
+                month: dateObj.toLocaleString('en-US', { month: 'short' }).toUpperCase(),
+                day: dateObj.getDate()
+            };
         };
 
         function App() {
@@ -147,7 +163,14 @@
               }, console.error),
               
               onSnapshot(getCollectionRef('important_dates'), (snap) => {
-                setDates(snap.docs.map(d => ({id: d.id, ...d.data()})));
+                  const hasSeeded = localStorage.getItem('seeded_dates_taniya');
+                  if (snap.empty && !hasSeeded) {
+                      setDates(initialSeedDates);
+                      localStorage.setItem('seeded_dates_taniya', 'true');
+                      initialSeedDates.forEach(d => setDoc(doc(db, 'artifacts', appId, 'users', 'taniya_admin_123', 'important_dates', d.id), d).catch(console.error));
+                  } else {
+                      setDates(snap.docs.map(d => ({id: d.id, ...d.data()})));
+                  }
               }, console.error),
 
               onSnapshot(getCollectionRef('finance_accounts'), (snap) => setAccounts(snap.docs.map(d => ({id: d.id, ...d.data()}))), console.error),
@@ -210,7 +233,7 @@
           const saveData = async (collectionName, data, id = null) => {
             setModalError('');
             if (!user) {
-              setModalError('ডাটাবেসের সাথে কানেক্ট করা যাচ্ছে না। ফায়ারবেস অথেন্টিকেশন চালু আছে কিনা চেক করুন।');
+              setModalError('ডাটাবেসের সাথে কানেক্ট করা যাচ্ছেবিধা। ফায়ারবেস অথেন্টিকেশন চালু আছে কিনা চেক করুন।');
               return;
             }
             setIsSaving(true);
@@ -333,7 +356,7 @@
           if (isInitializing) return <div className="min-h-screen bg-[#0f172a] flex items-center justify-center text-white">লোড হচ্ছে...</div>;
 
           if (showSplash) {
-            return <video src="/splash_video.mp4" autoPlay playsInline className="w-full h-screen object-cover bg-black fixed inset-0 z-[100]" />;
+            return <video src="/splash_video.mp4" autoPlay playsInline className="w-full h-screen object-cover bg-[#050B14]" />;
           }
 
           const renderDashboardCards = () => (
@@ -512,22 +535,25 @@
           const renderDates = () => (
             <div className="space-y-4 max-w-lg mx-auto">
               <button onClick={() => openModal('date')} className="w-full py-4 bg-amber-500/20 border border-amber-400/30 backdrop-blur-md rounded-xl flex justify-center items-center gap-2 hover:bg-amber-500/40 text-white transition-all shadow-lg"><i className="fas fa-plus"></i> নতুন তারিখ যোগ করুন</button>
-              {dates.map(d => (
-                <div key={d.id} className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-4 flex items-center gap-4 shadow-lg">
-                  <div className="w-14 h-14 bg-black/20 border border-white/10 rounded-2xl flex flex-col items-center justify-center flex-shrink-0">
-                    <span className="text-[10px] text-amber-300 uppercase tracking-widest">{new Date(d.date + 'T00:00:00').toLocaleString('en-US', { month: 'short' })}</span>
-                    <span className="text-xl text-white leading-none mt-1">{new Date(d.date + 'T00:00:00').getDate()}</span>
+              {dates.map(d => {
+                const { month, day } = formatDisplayDate(d.date);
+                return (
+                  <div key={d.id} className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-4 flex items-center gap-4 shadow-lg">
+                    <div className="w-14 h-14 bg-black/20 border border-white/10 rounded-2xl flex flex-col items-center justify-center flex-shrink-0">
+                      <span className="text-[10px] text-amber-300 uppercase tracking-widest">{month}</span>
+                      <span className="text-xl text-white leading-none mt-1">{day}</span>
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="text-white">{d.title}</h4>
+                      <p className="text-xs text-gray-400 mt-1">{d.type}</p>
+                    </div>
+                    <div className="flex flex-col gap-3">
+                      <button onClick={() => openModal('date', d)} className="text-gray-300 hover:text-white"><i className="fas fa-pen"></i></button>
+                      <button onClick={() => deleteData('important_dates', d.id)} className="text-rose-400 hover:text-rose-300"><i className="fas fa-trash"></i></button>
+                    </div>
                   </div>
-                  <div className="flex-1">
-                    <h4 className="text-white">{d.title}</h4>
-                    <p className="text-xs text-gray-400 mt-1">{d.type}</p>
-                  </div>
-                  <div className="flex flex-col gap-3">
-                    <button onClick={() => openModal('date', d)} className="text-gray-300 hover:text-white"><i className="fas fa-pen"></i></button>
-                    <button onClick={() => deleteData('important_dates', d.id)} className="text-rose-400 hover:text-rose-300"><i className="fas fa-trash"></i></button>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           );
 
@@ -748,6 +774,7 @@
                                 const rel = data.relation.trim();
                                 if(rel === 'আমি' || rel === 'স্ত্রী' || rel === 'স্বামী' || rel === 'স্বামী সাবেক') {
                                     await setDoc(doc(db, 'artifacts', appId, 'users', 'taniya_admin_123', 'important_dates', 'our_marriage_anniversary'), { title: `আমাদের বিবাহ বার্ষিকী`, type: 'বিবাহ বার্ষিকী', date: data.marriageDate });
+                                    await deleteDoc(doc(db, 'artifacts', appId, 'users', 'taniya_admin_123', 'important_dates', docId + '_marriage')).catch(()=>{});
                                 } else {
                                     await setDoc(doc(db, 'artifacts', appId, 'users', 'taniya_admin_123', 'important_dates', docId + '_marriage'), { title: `${data.name} এর বিবাহ বার্ষিকী`, type: 'বিবাহ বার্ষিকী', date: data.marriageDate });
                                 }
