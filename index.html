@@ -53,7 +53,7 @@
         import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
         import { getFirestore, collection, onSnapshot, doc, setDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 
-        const { useState, useEffect, useRef } = React;
+        const { useState, useEffect } = React;
 
         const defaultFirebaseConfig = {
           apiKey: "AIzaSyCf_zIDQGrjC5OMo-Px5s5vcmMdZlVMbkM",
@@ -83,7 +83,6 @@
         };
 
         function App() {
-          const videoRef = useRef(null);
           const [user, setUser] = useState(null);
           const [isInitializing, setIsInitializing] = useState(true);
 
@@ -177,21 +176,9 @@
               setAuthStatus('video');
               setPinInput('');
 
-              if (videoRef.current) {
-                  videoRef.current.currentTime = 0;
-                  videoRef.current.play().catch(e => {
-                      console.log("Video autoplay prevented, trying muted:", e);
-                      videoRef.current.muted = true;
-                      videoRef.current.play().catch(err => console.log("Final video error:", err));
-                  });
-              }
-
               setTimeout(() => {
                 setAuthStatus('unlocked');
                 setCurrentView('dashboard');
-                if (videoRef.current) {
-                    videoRef.current.pause();
-                }
               }, 10000);
             } else {
               setActionPinModal({ show: true, action: null, title: 'ভুল পিন দিয়েছেন' });
@@ -354,6 +341,17 @@
           const sortedMembers = [...members].sort((a, b) => (relPriority[a.relation] || 99) - (relPriority[b.relation] || 99));
 
           if (isInitializing) return <div className="min-h-screen bg-[#0f172a] flex items-center justify-center text-white">লোড হচ্ছে...</div>;
+
+          if (authStatus === 'video') {
+            return (
+              <video 
+                src="public/splash_video.mp4" 
+                autoPlay 
+                playsInline 
+                className="w-full h-screen object-cover bg-black fixed inset-0 z-[100]" 
+              />
+            );
+          }
 
           const renderDashboardCards = () => (
             <div className="grid grid-cols-2 gap-4">
@@ -593,15 +591,6 @@
               <div className="fixed inset-0 z-[-1]">
                   <div className="absolute inset-0 bg-cover bg-center bg-fixed" style={{ backgroundImage: "url('public/mahsin.jpeg')" }}></div>
                   <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"></div>
-              </div>
-
-              <div className={`fixed inset-0 z-[100] bg-black flex items-center justify-center overflow-hidden transition-opacity duration-1000 ${authStatus === 'video' ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'}`}>
-                  <video
-                      ref={videoRef}
-                      src="public/splash_video.mp4"
-                      playsInline
-                      className="w-full h-full object-cover"
-                  />
               </div>
 
               {authStatus === 'locked' && (
