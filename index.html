@@ -71,11 +71,6 @@
         const db = getFirestore(app);
         const appId = typeof __app_id !== 'undefined' ? __app_id : "taniya-locker-app";
 
-        const initialSeedDates = [
-            { id: "d1", title: "নাহিদা ইয়াছমিন তানিয়া এর জন্মদিন", type: "জন্মদিন", date: "1994-01-30" },
-            { id: "d2", title: "প্রথম বিবাহ বার্ষিকী", type: "বিবাহ বার্ষিকী", date: "2012-02-28" }
-        ];
-
         const toEnglishNumber = (str) => {
             if (!str) return '';
             const bengaliToEnglish = { '০': '0', '১': '1', '২': '2', '৩': '3', '৪': '4', '৫': '5', '৬': '6', '৭': '7', '৮': '8', '৯': '9' };
@@ -87,6 +82,7 @@
           const [isInitializing, setIsInitializing] = useState(true);
 
           const [authStatus, setAuthStatus] = useState('locked'); 
+          const [showSplash, setShowSplash] = useState(false);
           const [pinInput, setPinInput] = useState('');
           const [currentView, setCurrentView] = useState('dashboard');
           
@@ -151,14 +147,7 @@
               }, console.error),
               
               onSnapshot(getCollectionRef('important_dates'), (snap) => {
-                  const hasSeeded = localStorage.getItem('seeded_dates_taniya');
-                  if (snap.empty && !hasSeeded) {
-                      setDates(initialSeedDates);
-                      localStorage.setItem('seeded_dates_taniya', 'true');
-                      initialSeedDates.forEach(d => setDoc(doc(db, 'artifacts', appId, 'users', 'taniya_admin_123', 'important_dates', d.id), d).catch(console.error));
-                  } else {
-                      setDates(snap.docs.map(d => ({id: d.id, ...d.data()})));
-                  }
+                setDates(snap.docs.map(d => ({id: d.id, ...d.data()})));
               }, console.error),
 
               onSnapshot(getCollectionRef('finance_accounts'), (snap) => setAccounts(snap.docs.map(d => ({id: d.id, ...d.data()}))), console.error),
@@ -173,10 +162,11 @@
 
           const handleMainLogin = () => {
             if (toEnglishNumber(pinInput) === toEnglishNumber(pins.main)) {
-              setAuthStatus('video');
+              setShowSplash(true);
               setPinInput('');
 
               setTimeout(() => {
+                setShowSplash(false);
                 setAuthStatus('unlocked');
                 setCurrentView('dashboard');
               }, 10000);
@@ -342,15 +332,8 @@
 
           if (isInitializing) return <div className="min-h-screen bg-[#0f172a] flex items-center justify-center text-white">লোড হচ্ছে...</div>;
 
-          if (authStatus === 'video') {
-            return (
-              <video 
-                src="public/splash_video.mp4" 
-                autoPlay 
-                playsInline 
-                className="w-full h-screen object-cover bg-black fixed inset-0 z-[100]" 
-              />
-            );
+          if (showSplash) {
+            return <video src="/splash_video.mp4" autoPlay playsInline className="w-full h-screen object-cover bg-black fixed inset-0 z-[100]" />;
           }
 
           const renderDashboardCards = () => (
