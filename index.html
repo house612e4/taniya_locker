@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="bn">
 <head>
@@ -71,26 +72,10 @@
         const db = getFirestore(app);
         const appId = typeof __app_id !== 'undefined' ? __app_id : "taniya-locker-app";
 
-        const initialSeedDates = [
-            { id: "d1", title: "নাহিদা ইয়াছমিন তানিয়া এর জন্মদিন", type: "জন্মদিন", date: "1994-01-30" },
-            { id: "d2", title: "প্রথম বিবাহ বার্ষিকী", type: "বিবাহ বার্ষিকী", date: "2012-02-28" }
-        ];
-
         const toEnglishNumber = (str) => {
             if (!str) return '';
             const bengaliToEnglish = { '০': '0', '১': '1', '২': '2', '৩': '3', '৪': '4', '৫': '5', '৬': '6', '৭': '7', '৮': '8', '৯': '9' };
             return String(str).replace(/[০-৯]/g, match => bengaliToEnglish[match]);
-        };
-
-        const formatDisplayDate = (dateString) => {
-            if (!dateString) return { month: '', day: '' };
-            const parts = dateString.split('-');
-            if (parts.length !== 3) return { month: '', day: '' };
-            const dateObj = new Date(parts[0], parts[1] - 1, parts[2]);
-            return {
-                month: dateObj.toLocaleString('en-US', { month: 'short' }).toUpperCase(),
-                day: dateObj.getDate()
-            };
         };
 
         function App() {
@@ -163,14 +148,7 @@
               }, console.error),
               
               onSnapshot(getCollectionRef('important_dates'), (snap) => {
-                  const hasSeeded = localStorage.getItem('seeded_dates_taniya');
-                  if (snap.empty && !hasSeeded) {
-                      setDates(initialSeedDates);
-                      localStorage.setItem('seeded_dates_taniya', 'true');
-                      initialSeedDates.forEach(d => setDoc(doc(db, 'artifacts', appId, 'users', 'taniya_admin_123', 'important_dates', d.id), d).catch(console.error));
-                  } else {
-                      setDates(snap.docs.map(d => ({id: d.id, ...d.data()})));
-                  }
+                setDates(snap.docs.map(d => ({id: d.id, ...d.data()})));
               }, console.error),
 
               onSnapshot(getCollectionRef('finance_accounts'), (snap) => setAccounts(snap.docs.map(d => ({id: d.id, ...d.data()}))), console.error),
@@ -233,7 +211,7 @@
           const saveData = async (collectionName, data, id = null) => {
             setModalError('');
             if (!user) {
-              setModalError('ডাটাবেসের সাথে কানেক্ট করা যাচ্ছেবিধা। ফায়ারবেস অথেন্টিকেশন চালু আছে কিনা চেক করুন।');
+              setModalError('ডাটাবেসের সাথে কানেক্ট করা যাচ্ছে না। ফায়ারবেস অথেন্টিকেশন চালু আছে কিনা চেক করুন।');
               return;
             }
             setIsSaving(true);
@@ -356,7 +334,7 @@
           if (isInitializing) return <div className="min-h-screen bg-[#0f172a] flex items-center justify-center text-white">লোড হচ্ছে...</div>;
 
           if (showSplash) {
-            return <video src="public/splash_video.mp4" autoPlay playsInline className="w-full h-screen object-cover bg-[#050B14]" />;
+            return <video src="public/splash_video.mp4" autoPlay playsInline className="w-full h-screen object-cover bg-black fixed inset-0 z-[100]" />;
           }
 
           const renderDashboardCards = () => (
@@ -774,7 +752,6 @@
                                 const rel = data.relation.trim();
                                 if(rel === 'আমি' || rel === 'স্ত্রী' || rel === 'স্বামী' || rel === 'স্বামী সাবেক') {
                                     await setDoc(doc(db, 'artifacts', appId, 'users', 'taniya_admin_123', 'important_dates', 'our_marriage_anniversary'), { title: `আমাদের বিবাহ বার্ষিকী`, type: 'বিবাহ বার্ষিকী', date: data.marriageDate });
-                                    await deleteDoc(doc(db, 'artifacts', appId, 'users', 'taniya_admin_123', 'important_dates', docId + '_marriage')).catch(()=>{});
                                 } else {
                                     await setDoc(doc(db, 'artifacts', appId, 'users', 'taniya_admin_123', 'important_dates', docId + '_marriage'), { title: `${data.name} এর বিবাহ বার্ষিকী`, type: 'বিবাহ বার্ষিকী', date: data.marriageDate });
                                 }
