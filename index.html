@@ -174,13 +174,17 @@
 
           const handleMainLogin = () => {
             if (toEnglishNumber(pinInput) === toEnglishNumber(pins.main)) {
-              if (videoRef.current) {
-                  videoRef.current.currentTime = 0;
-                  videoRef.current.play().catch(e => console.log("Video error:", e));
-              }
-              
               setAuthStatus('video');
               setPinInput('');
+
+              if (videoRef.current) {
+                  videoRef.current.currentTime = 0;
+                  videoRef.current.play().catch(e => {
+                      console.log("Video autoplay prevented, trying muted:", e);
+                      videoRef.current.muted = true;
+                      videoRef.current.play().catch(err => console.log("Final video error:", err));
+                  });
+              }
 
               setTimeout(() => {
                 setAuthStatus('unlocked');
@@ -591,17 +595,14 @@
                   <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"></div>
               </div>
 
-              {authStatus === 'video' && (
-                <div className="fixed inset-0 z-[100] bg-black flex items-center justify-center overflow-hidden transition-opacity duration-1000">
-                    <video
-                        ref={videoRef}
-                        src="public/splash_video.mp4"
-                        playsInline
-                        autoPlay
-                        className="w-full h-full object-cover opacity-100"
-                    />
-                </div>
-              )}
+              <div className={`fixed inset-0 z-[100] bg-black flex items-center justify-center overflow-hidden transition-opacity duration-1000 ${authStatus === 'video' ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'}`}>
+                  <video
+                      ref={videoRef}
+                      src="public/splash_video.mp4"
+                      playsInline
+                      className="w-full h-full object-cover"
+                  />
+              </div>
 
               {authStatus === 'locked' && (
                 <div className="min-h-screen flex items-center justify-center p-4 relative z-10">
