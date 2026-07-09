@@ -3,923 +3,285 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TANIYA'S WORLD</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
+    <title>মোজাম্মেল টাওয়ার | আভিজাত্যের নতুন সংজ্ঞা</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Hind+Siliguri:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;600;700&family=Poppins:wght@400;600&display=swap');
-        
-        body { 
-            font-family: 'Poppins', 'Noto Sans Bengali', sans-serif; 
-            -webkit-tap-highlight-color: transparent; 
-            background-color: #0f172a; 
-            margin: 0; 
-            padding: 0; 
+        :root {
+            --bg-dark: #080808;
+            --bg-card: rgba(255, 255, 255, 0.05);
+            --gold: #D4AF37;
+            --gold-glow: rgba(212, 175, 55, 0.4);
+            --text-white: #ffffff;
+            --text-gray: #b0b0b0;
+            --border-glass: rgba(255, 255, 255, 0.1);
         }
-        .glass-input {
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: white;
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            font-family: 'Poppins', 'Noto Sans Bengali', sans-serif;
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            overflow-x: hidden;
         }
-        .glass-input::placeholder { 
-            color: rgba(255, 255, 255, 0.4); 
-            font-family: 'Poppins', 'Noto Sans Bengali', sans-serif; 
+
+        h1, h2, h3 { font-family: 'Noto Serif Bengali', serif; font-weight: 700; }
+
+        /* Glassmorphism Navbar */
+        header {
+            position: fixed; width: 100%; top: 0; z-index: 1000;
+            padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center;
+            background: rgba(8, 8, 8, 0.6);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border-glass);
         }
-        .glass-input:focus { border-color: rgba(255, 255, 255, 0.4); outline: none; }
-        .custom-scrollbar::-webkit-scrollbar { width: 0px; height: 0px; background: transparent; }
-        
-        @keyframes pulse-ring {
-          0% { transform: scale(0.8); opacity: 0.5; }
-          50% { transform: scale(1.2); opacity: 1; }
-          100% { transform: scale(0.8); opacity: 0.5; }
+        .logo { font-family: 'Noto Serif Bengali', serif; font-size: 1.5rem; color: var(--gold); letter-spacing: 1px; }
+        nav ul { list-style: none; display: flex; gap: 2rem; }
+        nav a { color: var(--text-white); text-decoration: none; font-size: 1rem; font-weight: 500; transition: 0.3s; position: relative; }
+        nav a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0; background: var(--gold); transition: width 0.3s; }
+        nav a:hover::after { width: 100%; }
+        nav a:hover { color: var(--gold); }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; position: relative; padding: 0 20px;
+            background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2072&auto=format&fit=crop') center/cover no-repeat fixed;
         }
-        .animate-pulse-fast { animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        .hero::before { content: ''; position: absolute; top:0; left:0; right:0; bottom:0; background: linear-gradient(to bottom, rgba(8,8,8,0.8), rgba(8,8,8,0.4), rgba(8,8,8,0.9)); }
+        .hero-content { position: relative; z-index: 2; animation: fadeUp 1.5s ease; }
+        .tagline { color: var(--gold); letter-spacing: 3px; font-size: 1rem; text-transform: uppercase; margin-bottom: 1rem; display: block; animation: pulse 2s infinite; }
+        .hero h1 { font-size: 4.5rem; margin-bottom: 1.5rem; text-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .hero p { font-size: 1.3rem; color: #e0e0e0; max-width: 700px; margin: 0 auto 2.5rem; }
+        .btn-gold { background: transparent; color: var(--gold); padding: 1rem 2.5rem; border: 1px solid var(--gold); text-decoration: none; font-size: 1.1rem; font-weight: 600; transition: all 0.4s ease; border-radius: 2px; }
+        .btn-gold:hover { background: var(--gold); color: #000; box-shadow: 0 0 30px var(--gold-glow); transform: translateY(-3px); }
+
+        /* Generic Section Styles */
+        section { padding: 6rem 5%; position: relative; }
+        .section-header { text-align: center; margin-bottom: 4rem; }
+        .section-header h2 { font-size: 2.8rem; color: var(--text-white); margin-bottom: 0.5rem; }
+        .section-header p { color: var(--gold); font-size: 1.1rem; }
+        .divider { width: 80px; height: 2px; background: var(--gold); margin: 1rem auto; }
+
+        /* Reveal Animation on Scroll */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 1s ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Amenities Grid */
+        .amenities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; }
+        .glass-card { background: var(--bg-card); backdrop-filter: blur(10px); border: 1px solid var(--border-glass); padding: 2rem; border-radius: 10px; transition: all 0.4s ease; text-align: center; }
+        .glass-card:hover { transform: translateY(-10px); border-color: var(--gold); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .glass-card .icon { font-size: 2.5rem; color: var(--gold); margin-bottom: 1rem; }
+        .glass-card h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
+
+        /* Interactive Booking & Floor Plan */
+        .booking-bg { background: linear-gradient(to bottom, #080808, #121212, #080808); }
+        .building-wrapper { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column-reverse; gap: 1rem; }
+        .floor-block { display: flex; align-items: stretch; border: 1px solid #222; background: rgba(255,255,255,0.02); border-radius: 4px; overflow: hidden; transition: 0.3s; }
+        .floor-block:hover { border-color: var(--text-gray); background: rgba(255,255,255,0.05); }
+        .floor-num { width: 80px; background: #111; display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif Bengali', serif; font-size: 1.2rem; color: var(--gold); border-right: 1px solid #222; padding: 1rem 0; }
+        .units { display: flex; flex: 1; gap: 1px; background: #222; }
+        .unit { flex: 1; background: #0f0f0f; color: var(--text-gray); border: none; padding: 1.2rem 0; cursor: pointer; font-size: 1.2rem; font-family: 'Hind Siliguri', sans-serif; transition: all 0.3s; position: relative; }
+        .unit:hover { background: #1a1a1a; color: #fff; }
+        .unit.selected { background: var(--gold); color: #000; font-weight: 700; }
+        .unit.selected::after { content: '✓'; position: absolute; top: 2px; right: 5px; font-size: 0.8rem; }
+        .unit.disabled { background: #0a0a0a; color: #333; cursor: not-allowed; }
+
+        /* Booking Form Glassmorphism */
+        .form-container { max-width: 600px; margin: 4rem auto 0; background: var(--bg-card); backdrop-filter: blur(15px); border: 1px solid var(--border-glass); padding: 3rem; border-radius: 10px; box-shadow: 0 10px 40px rgba(0,0,0,0.4); }
+        .selected-info { text-align: center; color: var(--gold); font-size: 1.3rem; margin-bottom: 2rem; font-weight: 600; height: 30px; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; color: var(--text-gray); margin-bottom: 0.5rem; }
+        .form-control { width: 100%; background: rgba(0,0,0,0.3); border: 1px solid #333; color: #fff; padding: 0.9rem; border-radius: 4px; font-family: 'Hind Siliguri', sans-serif; font-size: 1rem; transition: 0.3s; }
+        .form-control:focus { outline: none; border-color: var(--gold); background: rgba(0,0,0,0.5); }
+        .submit-btn { width: 100%; padding: 1rem; background: var(--gold); color: #000; border: none; font-size: 1.1rem; font-weight: 700; cursor: pointer; border-radius: 4px; transition: 0.3s; }
+        .submit-btn:hover { box-shadow: 0 0 20px var(--gold-glow); }
+
+        /* Footer */
+        footer { background: #050505; padding: 3rem 5%; text-align: center; border-top: 1px solid #111; }
+        footer h3 { color: var(--gold); font-size: 1.8rem; margin-bottom: 1rem; }
+        footer p { color: var(--text-gray); margin-bottom: 0.5rem; }
+
+        /* Animations */
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes pulse { 0% { opacity: 0.6; transform: scale(1); } 50% { opacity: 1; transform: scale(1.05); } 100% { opacity: 0.6; transform: scale(1); } }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.8rem; }
+            nav ul { display: none; }
+            .units { flex-direction: column; }
+            .unit { padding: 0.8rem 0; }
+        }
     </style>
 </head>
-<body class="text-white">
-    <div id="root"></div>
+<body>
 
-    <script type="text/babel" data-type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
-        import { getFirestore, collection, onSnapshot, doc, setDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+    <header>
+        <div class="logo">মোজাম্মেল টাওয়ার</div>
+        <nav>
+            <ul>
+                <li><a href="#home">হোম</a></li>
+                <li><a href="#amenities">সুবিধা</a></li>
+                <li><a href="#booking">বুকিং</a></li>
+            </ul>
+        </nav>
+    </header>
 
-        const { useState, useEffect } = React;
+    <!-- Hero Section -->
+    <section class="hero" id="home" style="padding-top:0; padding-bottom:0; min-height: 100vh;">
+        <div class="hero-content">
+            <span class="tagline">শীঘ্রই আসছে</span>
+            <h1>মোজাম্মেল টাওয়ার</h1>
+            <p>রাজউকের পাশে আভিজাত্যের নতুন সংজ্ঞা। ১০ তলা এক্সক্লুসিভ বিল্ডিং, যেখানে প্রতিটি তলায় রয়েছে ৪টি করে প্রিমিয়াম এপার্টমেন্ট (A, B, C, D)। আধুনিক স্থাপত্যের সাথে চরম আরাম ও নিরাপত্তার নিখুঁত মেলবন্ধন।</p>
+            <a href="#booking" class="btn-gold">আপনার স্বপ্নের ঠিকানা বেছে নিন</a>
+        </div>
+    </section>
 
-        const defaultFirebaseConfig = {
-          apiKey: "AIzaSyCf_zIDQGrjC5OMo-Px5s5vcmMdZlVMbkM",
-          authDomain: "taniya-world.firebaseapp.com",
-          projectId: "taniya-world",
-          storageBucket: "taniya-world.firebasestorage.app",
-          messagingSenderId: "840512527967",
-          appId: "1:840512527967:web:e4d88d83f1686b838245ea",
-          measurementId: "G-DKJKK3E529"
-        };
+    <!-- Amenities Section -->
+    <section id="amenities">
+        <div class="section-header reveal">
+            <h2>প্রিমিয়াম লাইফস্টাইল</h2>
+            <div class="divider"></div>
+            <p>আন্তর্জাতিক মানের সুযোগ-সুবিধা</p>
+        </div>
+        <div class="amenities-grid">
+            <div class="glass-card reveal">
+                <div class="icon">🏙️</div>
+                <h3>মডার্ন আর্কিটেকচার</h3>
+                <p>আন্তর্জাতিক স্থপতি দ্বারা ডিজাইনকৃত ফ্লোর প্ল্যান।</p>
+            </div>
+            <div class="glass-card reveal">
+                <div class="icon">🛗</div>
+                <h3>স্পিড লিফট</h3>
+                <p>আধুনিক প্রযুক্তির দ্রুতগতির ও নিরাপদ লিফট।</p>
+            </div>
+            <div class="glass-card reveal">
+                <div class="icon">🌳</div>
+                <h3>স্কাই গার্ডেন</h3>
+                <p>ছাদে সম্পূর্ণ আধুনিক স্কাই গার্ডেন ও কমিউনিটি স্পেস।</p>
+            </div>
+            <div class="glass-card reveal">
+                <div class="icon">🔐</div>
+                <h3>স্মার্ট সিকিউরিটি</h3>
+                <p>২৪/৭ সিসিটিভি ও ডিজিটাল ইন্টারকম সিস্টেম।</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking & Interactive Selection -->
+    <section class="booking-bg" id="booking">
+        <div class="section-header reveal">
+            <h2>এপার্টমেন্ট বুকিং</h2>
+            <div class="divider"></div>
+            <p>আপনার পছন্দের ফ্লোর ও ইউনিট নির্বাচন করুন</p>
+        </div>
+
+        <div class="building-wrapper reveal" id="buildingWrapper">
+            <!-- JS Generates 10 Floors Here -->
+        </div>
+
+        <div class="form-container reveal">
+            <div class="selected-info" id="selectedInfo">
+                অনুগ্রহ করে একটি ইউনিট নির্বাচন করুন
+            </div>
+            <form id="bookingForm">
+                <input type="hidden" id="hiddenUnit" required>
+                <div class="form-group">
+                    <label>আপনার নাম</label>
+                    <input type="text" class="form-control" placeholder="পুরো নাম লিখুন" required>
+                </div>
+                <div class="form-group">
+                    <label>মোবাইল নম্বর</label>
+                    <input type="tel" class="form-control" placeholder="01XXXXXXXXX" required>
+                </div>
+                <div class="form-group">
+                    <label>ইমেইল ঠিকানা</label>
+                    <input type="email" class="form-control" placeholder="আপনার ইমেইল" required>
+                </div>
+                <button type="submit" class="submit-btn">বুকিং নিশ্চিত করুন</button>
+            </form>
+            <div id="successMsg" style="display:none; text-align:center; margin-top:1.5rem; color:var(--gold); font-size:1.2rem;">
+                ধন্যবাদ! আপনার বুকিংয়ের অনুরোধ সফলভাবে জমা হয়েছে। আমাদের প্রতিনিধি শীঘ্রই আপনার সাথে যোগাযোগ করবেন।
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <h3>মোজাম্মেল টাওয়ার</h3>
+        <p>ঠিকানা: রাজউক ভবনের পাশে, ঢাকা।</p>
+        <p>ফোন: +880 1XXXXXXXXX | ইমেইল: info@mozammeltower.com</p>
+        <p style="font-size: 0.8rem; color: #444; margin-top: 1rem;">&copy; 2024 মোজাম্মেল টাওয়ার. সর্বস্বত্ব সংরক্ষিত।</p>
+    </footer>
+
+    <script>
+        // 1. Generate 10 Floors Dynamically
+        const wrapper = document.getElementById('buildingWrapper');
+        const infoDisplay = document.getElementById('selectedInfo');
+        const hiddenInput = document.getElementById('hiddenUnit');
+
+        const bengaliNumbers = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯', '১০'];
         
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : defaultFirebaseConfig;
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-        const appId = typeof __app_id !== 'undefined' ? __app_id : "taniya-locker-app";
-
-        const toEnglishNumber = (str) => {
-            if (!str) return '';
-            const bengaliToEnglish = { '০': '0', '১': '1', '২': '2', '৩': '3', '৪': '4', '৫': '5', '৬': '6', '৭': '7', '৮': '8', '৯': '9' };
-            return String(str).replace(/[০-৯]/g, match => bengaliToEnglish[match]);
-        };
-
-        const formatDisplayDate = (dateString) => {
-            if (!dateString) return { month: '', day: '' };
-            const parts = dateString.split('-');
-            if (parts.length !== 3) return { month: '', day: '' };
-            const dateObj = new Date(parts[0], parts[1] - 1, parts[2]);
-            return {
-                month: dateObj.toLocaleString('en-US', { month: 'short' }).toUpperCase(),
-                day: dateObj.getDate()
-            };
-        };
-
-        function App() {
-          const [user, setUser] = useState(null);
-          const [isInitializing, setIsInitializing] = useState(true);
-
-          const [authStatus, setAuthStatus] = useState('locked'); 
-          const [showSplash, setShowSplash] = useState(false);
-          const [pinInput, setPinInput] = useState('');
-          const [currentView, setCurrentView] = useState('dashboard');
-          
-          const [actionPinModal, setActionPinModal] = useState({ show: false, action: null, title: '' });
-          const [actionPinInput, setActionPinInput] = useState('');
-          
-          const [passFolderPinModal, setPassFolderPinModal] = useState(false);
-          const [passPinInput, setPassPinInput] = useState('');
-
-          const [pins, setPins] = useState({ main: '7371', action: '6137', password: '8019' });
-
-          const [accounts, setAccounts] = useState([]);
-          const [transactions, setTransactions] = useState([]);
-          const [members, setMembers] = useState([]);
-          const [stories, setStories] = useState([]);
-          const [dates, setDates] = useState([]);
-          const [passwords, setPasswords] = useState([]);
-          const [plans, setPlans] = useState([]);
-
-          const [activeModal, setActiveModal] = useState(null);
-          const [editingItem, setEditingItem] = useState(null);
-          const [financeSubView, setFinanceSubView] = useState('overview');
-          
-          const [uploadedImage, setUploadedImage] = useState(null);
-          const [isSaving, setIsSaving] = useState(false);
-          const [modalError, setModalError] = useState('');
-
-          useEffect(() => {
-            const initAuth = async () => {
-              try {
-                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                  await signInWithCustomToken(auth, __initial_auth_token);
-                } else {
-                  await signInAnonymously(auth);
-                }
-              } catch (error) {
-                console.error("Auth error:", error);
-              }
-            };
-            initAuth();
-            
-            const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-              setUser(currentUser);
-              setIsInitializing(false);
-            });
-            return () => unsubscribe();
-          }, []);
-
-          useEffect(() => {
-            if (!user) return;
-
-            const getCollectionRef = (colName) => collection(db, 'artifacts', appId, 'users', 'taniya_admin_123', colName);
-            const pinRef = doc(db, 'artifacts', appId, 'users', 'taniya_admin_123', 'settings', 'pins');
-
-            const unsubs = [
-              onSnapshot(pinRef, (snap) => {
-                if (snap.exists()) setPins(snap.data());
-              }, console.error),
-
-              onSnapshot(getCollectionRef('family_members'), (snap) => {
-                setMembers(snap.docs.map(d => ({id: d.id, ...d.data()})));
-              }, console.error),
-              
-              onSnapshot(getCollectionRef('important_dates'), (snap) => {
-                  setDates(snap.docs.map(d => ({id: d.id, ...d.data()})));
-              }, console.error),
-
-              onSnapshot(getCollectionRef('finance_accounts'), (snap) => setAccounts(snap.docs.map(d => ({id: d.id, ...d.data()}))), console.error),
-              onSnapshot(getCollectionRef('finance_transactions'), (snap) => setTransactions(snap.docs.map(d => ({id: d.id, ...d.data()}))), console.error),
-              onSnapshot(getCollectionRef('stories'), (snap) => setStories(snap.docs.map(d => ({id: d.id, ...d.data()}))), console.error),
-              onSnapshot(getCollectionRef('passwords'), (snap) => setPasswords(snap.docs.map(d => ({id: d.id, ...d.data()}))), console.error),
-              onSnapshot(getCollectionRef('future_plans'), (snap) => setPlans(snap.docs.map(d => ({id: d.id, ...d.data()}))), console.error)
-            ];
-
-            return () => unsubs.forEach(unsub => unsub());
-          }, [user]);
-
-          const handleMainLogin = () => {
-            if (toEnglishNumber(pinInput) === toEnglishNumber(pins.main)) {
-              setShowSplash(true);
-              setPinInput('');
-
-              setTimeout(() => {
-                setShowSplash(false);
-                setAuthStatus('unlocked');
-                setCurrentView('dashboard');
-              }, 10000);
-            } else {
-              setActionPinModal({ show: true, action: null, title: 'ভুল পিন দিয়েছেন' });
-            }
-          };
-
-          const verifyActionAndExecute = () => {
-            if (toEnglishNumber(actionPinInput) === toEnglishNumber(pins.action)) {
-              if (actionPinModal.action) actionPinModal.action();
-              setActionPinModal({ show: false, action: null, title: '' });
-              setActionPinInput('');
-            } else {
-              setActionPinInput('');
-            }
-          };
-
-          const requireSecureAction = (actionFn, titleText) => {
-            setActionPinModal({ show: true, action: actionFn, title: titleText });
-          };
-
-          const openPasswordFolder = () => {
-            if (toEnglishNumber(passPinInput) === toEnglishNumber(pins.password)) {
-              setPassFolderPinModal(false);
-              setPassPinInput('');
-              setCurrentView('passwords');
-            } else {
-              setPassPinInput('');
-            }
-          };
-
-          const openModal = (type, item = null) => {
-            setModalError('');
-            setIsSaving(false);
-            setEditingItem(item);
-            if (type === 'member') setUploadedImage(null);
-            setActiveModal(type);
-          };
-
-          const saveData = async (collectionName, data, id = null) => {
-            setModalError('');
-            if (!user) {
-              setModalError('ডাটাবেসের সাথে কানেক্ট করা যাচ্ছে না। ফায়ারবেস অথেন্টিকেশন চালু আছে কিনা চেক করুন।');
-              return;
-            }
-            setIsSaving(true);
-            try {
-              const docId = id || Date.now().toString();
-              const docRef = doc(db, 'artifacts', appId, 'users', 'taniya_admin_123', collectionName, docId);
-              await setDoc(docRef, data);
-              setActiveModal(null);
-            } catch (err) {
-              console.error(err);
-              setModalError('সংরক্ষণ করা যায়নি: ' + err.message);
-            } finally {
-              setIsSaving(false);
-            }
-          };
-
-          const deleteData = async (collectionName, id) => {
-            if (!user) return;
-            requireSecureAction(async () => {
-              await deleteDoc(doc(db, 'artifacts', appId, 'users', 'taniya_admin_123', collectionName, id));
-              if (collectionName === 'family_members') {
-                await deleteDoc(doc(db, 'artifacts', appId, 'users', 'taniya_admin_123', 'important_dates', id + '_dob')).catch(e => console.log(e));
-                await deleteDoc(doc(db, 'artifacts', appId, 'users', 'taniya_admin_123', 'important_dates', 'our_marriage_anniversary')).catch(e => console.log(e));
-                await deleteDoc(doc(db, 'artifacts', appId, 'users', 'taniya_admin_123', 'important_dates', id + '_marriage')).catch(e => console.log(e));
-                await deleteDoc(doc(db, 'artifacts', appId, 'users', 'taniya_admin_123', 'important_dates', id + '_death')).catch(e => console.log(e));
-              }
-            }, 'এই তথ্যটি মুছে ফেলতে চান?');
-          };
-
-          const savePins = async (e) => {
-            e.preventDefault();
-            setModalError('');
-            if (!user) {
-              setModalError('ডাটাবেসের সাথে কানেক্ট করা যাচ্ছে না। ফায়ারবেস অথেন্টিকেশন চালু আছে কিনা চেক করুন।');
-              return;
-            }
-            setIsSaving(true);
-            try {
-              const fd = new FormData(e.target);
-              const data = Object.fromEntries(fd.entries());
-              
-              if(data.main) data.main = toEnglishNumber(data.main);
-              if(data.action) data.action = toEnglishNumber(data.action);
-              if(data.password) data.password = toEnglishNumber(data.password);
-
-              const ref = doc(db, 'artifacts', appId, 'users', 'taniya_admin_123', 'settings', 'pins');
-              await setDoc(ref, data);
-              setActiveModal(null);
-            } catch (err) {
-              console.error(err);
-              setModalError('পিন সেভ করা যায়নি: ' + err.message);
-            } finally {
-              setIsSaving(false);
-            }
-          };
-
-          const handleImageChange = (e) => {
-            const file = e.target.files[0];
-            if (!file) return;
-
-            const reader = new FileReader();
-            reader.onload = (event) => {
-              const img = new Image();
-              img.onload = () => {
-                const canvas = document.createElement('canvas');
-                const MAX_WIDTH = 400;
-                const scaleSize = MAX_WIDTH / img.width;
-                canvas.width = MAX_WIDTH;
-                canvas.height = img.height * scaleSize;
-                const ctx = canvas.getContext('2d');
-                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-                const compressedBase64 = canvas.toDataURL('image/jpeg', 0.8);
-                setUploadedImage(compressedBase64);
-              };
-              img.src = event.target.result;
-            };
-            reader.readAsDataURL(file);
-          };
-
-          const formatMoney = (amount) => {
-            const englishAmount = toEnglishNumber(amount);
-            return `৳ ${Number(englishAmount || 0).toLocaleString('en-IN')}`;
-          };
-
-          const getAccountCurrentBalance = (accId) => {
-            const acc = accounts.find(a => a.id === accId);
-            if (!acc) return 0;
-            let currentBalance = Number(toEnglishNumber(acc.balance) || 0);
-            transactions.forEach(t => {
-                if (t.accountId === accId) {
-                    const amount = Number(toEnglishNumber(t.amount) || 0);
-                    if (t.type === 'income' || t.type === 'borrowed') currentBalance += amount;
-                    if (t.type === 'expense' || t.type === 'lent') currentBalance -= amount;
-                }
-            });
-            return currentBalance;
-          };
-
-          const calculateFinance = () => {
-            let income = 0;
-            let expense = 0;
-            let totalBalance = 0;
-
-            transactions.forEach(t => {
-              const amount = Number(toEnglishNumber(t.amount) || 0);
-              if (t.type === 'income' || t.type === 'borrowed') income += amount;
-              if (t.type === 'expense' || t.type === 'lent') expense += amount;
-            });
-            
-            accounts.forEach(a => {
-              totalBalance += getAccountCurrentBalance(a.id);
-            });
-
-            return { income, expense, totalBalance };
-          };
-
-          const relPriority = { 'আমি': 1, 'স্বামী': 2, 'স্বামী সাবেক': 3, 'ছেলে': 4, 'মেয়ে': 4, 'মা': 5, 'বাবা': 5, 'ভাই': 6, 'বোন': 6, 'ভাসুর': 7, 'ননদ': 8 };
-          const sortedMembers = [...members].sort((a, b) => (relPriority[a.relation] || 99) - (relPriority[b.relation] || 99));
-
-          if (isInitializing) return <div className="min-h-screen bg-[#0f172a] flex items-center justify-center text-white">লোড হচ্ছে...</div>;
-
-          if (showSplash) {
-            return (
-              <video 
-                src="./public/splash_video.mp4" 
-                autoPlay 
-                playsInline 
-                className="w-full h-screen object-cover bg-black fixed inset-0 z-[100]" 
-              />
-            );
-          }
-
-          const renderDashboardCards = () => (
-            <div className="grid grid-cols-2 gap-4">
-              <div onClick={() => setCurrentView('finance')} className="bg-teal-400/30 border border-teal-200/30 backdrop-blur-xl shadow-lg rounded-[2rem] p-6 flex flex-col items-center justify-center cursor-pointer hover:bg-teal-400/40 active:scale-95 transition-all aspect-[4/3]">
-                <h3 className="text-xl md:text-2xl text-white text-center tracking-wide leading-snug drop-shadow-md">অর্থ<br/>ব্যবস্থাপনা</h3>
-              </div>
-              
-              <div onClick={() => setCurrentView('family')} className="bg-pink-500/30 border border-pink-300/30 backdrop-blur-xl shadow-lg rounded-[2rem] p-6 flex flex-col items-center justify-center cursor-pointer hover:bg-pink-500/40 active:scale-95 transition-all aspect-[4/3]">
-                <h3 className="text-xl md:text-2xl text-white text-center tracking-wide leading-snug drop-shadow-md">পরিবারের<br/>সদস্য</h3>
-              </div>
-              
-              <div onClick={() => setCurrentView('stories')} className="bg-indigo-600/40 border border-indigo-400/30 backdrop-blur-xl shadow-lg rounded-[2rem] p-6 flex flex-col items-center justify-center cursor-pointer hover:bg-indigo-600/50 active:scale-95 transition-all aspect-[4/3]">
-                <h3 className="text-xl md:text-2xl text-white text-center tracking-wide leading-snug drop-shadow-md">স্মরণীয়<br/>গল্প</h3>
-              </div>
-              
-              <div onClick={() => setPassFolderPinModal(true)} className="bg-orange-600/40 border border-orange-400/30 backdrop-blur-xl shadow-lg rounded-[2rem] p-6 flex flex-col items-center justify-center cursor-pointer hover:bg-orange-600/50 active:scale-95 transition-all aspect-[4/3]">
-                <h3 className="text-xl md:text-2xl text-white text-center tracking-wide leading-snug drop-shadow-md">প্রয়োজনীয়<br/>পাসওয়ার্ড</h3>
-              </div>
-              
-              <div onClick={() => setCurrentView('dates')} className="bg-amber-500/40 border border-amber-300/30 backdrop-blur-xl shadow-lg rounded-[2rem] p-6 flex flex-col items-center justify-center cursor-pointer hover:bg-amber-500/50 active:scale-95 transition-all aspect-[4/3] relative">
-                {dates.length > 0 && <span className="absolute top-4 right-4 w-3 h-3 bg-white rounded-full animate-ping"></span>}
-                <h3 className="text-xl md:text-2xl text-white text-center tracking-wide leading-snug drop-shadow-md">স্মরণীয়<br/>তারিখ</h3>
-              </div>
-              
-              <div onClick={() => setCurrentView('plans')} className="bg-emerald-500/30 border border-emerald-300/30 backdrop-blur-xl shadow-lg rounded-[2rem] p-6 flex flex-col items-center justify-center cursor-pointer hover:bg-emerald-500/40 active:scale-95 transition-all aspect-[4/3]">
-                <h3 className="text-xl md:text-2xl text-white text-center tracking-wide leading-snug drop-shadow-md">ভবিষ্যৎ<br/>পরিকল্পনা</h3>
-              </div>
-            </div>
-          );
-
-          const renderFinance = () => {
-            const { income, expense, totalBalance } = calculateFinance();
-            return (
-              <div className="space-y-4 max-w-lg mx-auto">
-                <div className="flex gap-2 overflow-x-auto pb-2 custom-scrollbar">
-                  <button onClick={() => setFinanceSubView('overview')} className={`px-4 py-2 rounded-full whitespace-nowrap transition-all ${financeSubView==='overview'?'bg-teal-500 text-white shadow-lg':'bg-white/10 border border-white/20 text-white'}`}>ওভারভিউ</button>
-                  <button onClick={() => setFinanceSubView('accounts')} className={`px-4 py-2 rounded-full whitespace-nowrap transition-all ${financeSubView==='accounts'?'bg-teal-500 text-white shadow-lg':'bg-white/10 border border-white/20 text-white'}`}>একাউন্টস</button>
-                  <button onClick={() => setFinanceSubView('transactions')} className={`px-4 py-2 rounded-full whitespace-nowrap transition-all ${financeSubView==='transactions'?'bg-teal-500 text-white shadow-lg':'bg-white/10 border border-white/20 text-white'}`}>লেনদেন ও ধার</button>
+        for (let i = 10; i >= 1; i--) {
+            let floorDiv = document.createElement('div');
+            floorDiv.className = 'floor-block';
+            floorDiv.innerHTML = `
+                <div class="floor-num">${bengaliNumbers[i]} তলা</div>
+                <div class="units">
+                    <button class="unit" data-floor="${bengaliNumbers[i]}" data-unit="A">A</button>
+                    <button class="unit" data-floor="${bengaliNumbers[i]}" data-unit="B">B</button>
+                    <button class="unit" data-floor="${bengaliNumbers[i]}" data-unit="C">C</button>
+                    <button class="unit" data-floor="${bengaliNumbers[i]}" data-unit="D">D</button>
                 </div>
-
-                {financeSubView === 'overview' && (
-                  <div className="space-y-4">
-                    <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-[2rem] p-6 text-center shadow-lg">
-                      <p className="text-gray-300 text-sm mb-1">মোট আয় (ধার সহ)</p>
-                      <h3 className="text-3xl text-emerald-400">{formatMoney(income)}</h3>
-                    </div>
-                    <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-[2rem] p-6 text-center shadow-lg">
-                      <p className="text-gray-300 text-sm mb-1">মোট ব্যয় (কাউকে ধার দেওয়া সহ)</p>
-                      <h3 className="text-3xl text-rose-400">{formatMoney(expense)}</h3>
-                    </div>
-                    <div className="bg-teal-500/20 backdrop-blur-xl border border-teal-400/30 rounded-[2rem] p-6 text-center shadow-lg">
-                      <p className="text-teal-100 text-sm mb-1">বর্তমান ব্যালেন্স (সব একাউন্ট মিলিয়ে)</p>
-                      <h3 className="text-3xl text-white">{formatMoney(totalBalance)}</h3>
-                    </div>
-                  </div>
-                )}
-
-                {financeSubView === 'accounts' && (
-                  <div className="space-y-4">
-                    <button onClick={() => openModal('account')} className="w-full py-4 bg-teal-500/20 border border-teal-400/30 backdrop-blur-md rounded-xl flex justify-center items-center gap-2 hover:bg-teal-500/40 text-white transition-all shadow-lg"><i className="fas fa-plus"></i> নতুন একাউন্ট</button>
-                    {accounts.map(acc => {
-                      const currentBal = getAccountCurrentBalance(acc.id);
-                      return (
-                        <div key={acc.id} className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-4 flex justify-between items-center shadow-lg">
-                          <div>
-                            <h4 className="text-white flex items-center gap-2">
-                              <i className={`fas ${acc.type === 'bank' ? 'fa-building-columns text-blue-300' : acc.type === 'bkash' ? 'fa-mobile-screen text-pink-300' : 'fa-wallet text-emerald-300'}`}></i> 
-                              {acc.name}
-                            </h4>
-                            <p className="text-xs text-gray-400 mt-1 capitalize">{acc.type}</p>
-                          </div>
-                          <div className="text-right">
-                            <p className="text-lg text-white">{formatMoney(currentBal)}</p>
-                            <div className="mt-2">
-                                <button onClick={() => requireSecureAction(() => openModal('account', acc), 'একাউন্ট আপডেট করতে চান?')} className="text-xs text-gray-300 hover:text-white px-2"><i className="fas fa-pen"></i></button>
-                                <button onClick={() => deleteData('finance_accounts', acc.id)} className="text-xs text-rose-400 hover:text-rose-300 ml-2"><i className="fas fa-trash"></i></button>
-                            </div>
-                          </div>
-                        </div>
-                      )
-                    })}
-                  </div>
-                )}
-
-                {financeSubView === 'transactions' && (
-                  <div className="space-y-4">
-                    <div className="flex gap-2">
-                      <button onClick={() => openModal('transaction', {type:'income'})} className="flex-1 py-3 bg-emerald-500/20 border border-emerald-400/30 text-emerald-300 rounded-xl text-sm backdrop-blur-md">আয় যোগ</button>
-                      <button onClick={() => openModal('transaction', {type:'expense'})} className="flex-1 py-3 bg-rose-500/20 border border-rose-400/30 text-rose-300 rounded-xl text-sm backdrop-blur-md">ব্যয় যোগ</button>
-                    </div>
-                    <div className="flex gap-2">
-                      <button onClick={() => openModal('transaction', {type:'borrowed'})} className="flex-1 py-3 bg-amber-500/20 border border-amber-400/30 text-amber-300 rounded-xl text-sm backdrop-blur-md">ধার নিয়েছি</button>
-                      <button onClick={() => openModal('transaction', {type:'lent'})} className="flex-1 py-3 bg-purple-500/20 border border-purple-400/30 text-purple-300 rounded-xl text-sm backdrop-blur-md">ধার দিয়েছি</button>
-                    </div>
-                    
-                    <div className="mt-6 space-y-3">
-                      {transactions.sort((a,b)=>b.date.localeCompare(a.date)).map(tr => (
-                        <div key={tr.id} className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-4 shadow-lg">
-                          <div className="flex justify-between items-start mb-2">
-                            <div>
-                              <h4 className="text-white">{tr.source}</h4>
-                              <p className="text-xs text-gray-400 mt-1">{tr.date} • {accounts.find(a=>a.id===tr.accountId)?.name || 'Unknown'}</p>
-                              {tr.note && <p className="text-sm text-gray-300 mt-2 bg-black/20 p-2 rounded-lg">{tr.note}</p>}
-                            </div>
-                            <div className="text-right">
-                              <p className={`${tr.type==='income'||tr.type==='borrowed' ? 'text-emerald-400' : 'text-rose-400'}`}>
-                                {tr.type==='income'||tr.type==='borrowed'?'+':'-'}{formatMoney(tr.amount)}
-                              </p>
-                              <span className="inline-block mt-1 text-[10px] px-2 py-0.5 bg-black/30 rounded-full text-gray-300 capitalize">{tr.type}</span>
-                            </div>
-                          </div>
-                          <div className="flex justify-end gap-4 mt-3 border-t border-white/10 pt-3">
-                            <button onClick={() => requireSecureAction(() => openModal('transaction', tr), 'সংশোধন করতে চান?')} className="text-xs text-gray-300 hover:text-white"><i className="fas fa-pen"></i> সংশোধন</button>
-                            <button onClick={() => deleteData('finance_transactions', tr.id)} className="text-xs text-rose-400 hover:text-rose-300"><i className="fas fa-trash"></i> ডিলেট</button>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-            );
-          };
-
-          const renderMembers = () => (
-            <div className="space-y-4 max-w-lg mx-auto">
-              <button onClick={() => openModal('member')} className="w-full py-4 bg-pink-500/20 border border-pink-400/30 backdrop-blur-md rounded-xl flex justify-center items-center gap-2 text-white hover:bg-pink-500/40 transition-all shadow-lg"><i className="fas fa-plus"></i> নতুন সদস্য</button>
-              {members.length === 0 && (
-                <div className="text-center py-10 bg-white/5 border border-white/10 rounded-2xl">
-                  <i className="fas fa-users text-4xl text-white/20 mb-3"></i>
-                  <p className="text-gray-400 text-sm">কোনো সদস্য যোগ করা হয়নি</p>
-                </div>
-              )}
-              <div className="grid grid-cols-2 gap-4">
-                {sortedMembers.map(m => (
-                  <div key={m.id} onClick={() => openModal('member', m)} className="relative aspect-[3/4] rounded-3xl overflow-hidden shadow-xl group cursor-pointer border border-white/20 bg-black/40 backdrop-blur-md">
-                    {m.imageUrl ? (
-                      <img src={m.imageUrl} alt={m.name} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"/>
-                    ) : (
-                      <div className="absolute inset-0 w-full h-full flex flex-col items-center justify-center">
-                         <i className="fas fa-user text-5xl text-white/20 mb-2"></i>
-                      </div>
-                    )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
-                    
-                    <div className="absolute bottom-0 left-0 w-full p-4">
-                      <p className="text-pink-300 text-[10px] mb-1 tracking-wider uppercase bg-black/50 inline-block px-2 py-0.5 rounded-full">{m.relation}</p>
-                      <h3 className="text-lg text-white leading-tight drop-shadow-md">{m.name}</h3>
-                    </div>
-                    <button onClick={(e) => { e.stopPropagation(); deleteData('family_members', m.id); }} className="absolute top-3 right-3 w-8 h-8 bg-black/40 backdrop-blur-md border border-white/10 rounded-full flex items-center justify-center text-white/80 hover:text-rose-400 transition-colors">
-                        <i className="fas fa-trash text-xs"></i>
-                    </button>
-                  </div>
-                ))}
-              </div>
-            </div>
-          );
-
-          const renderStories = () => (
-            <div className="space-y-4 max-w-lg mx-auto">
-              <button onClick={() => openModal('story')} className="w-full py-4 bg-indigo-500/20 border border-indigo-400/30 backdrop-blur-md rounded-xl flex justify-center items-center gap-2 hover:bg-indigo-500/40 text-white transition-all shadow-lg"><i className="fas fa-plus"></i> নতুন গল্প লিখুন</button>
-              {stories.map(s => (
-                <div key={s.id} className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-[2rem] p-6 shadow-lg">
-                  <h4 className="text-xl text-white mb-3">{s.title}</h4>
-                  <p className="text-gray-300 text-sm whitespace-pre-wrap leading-relaxed">{s.content}</p>
-                  <div className="mt-5 flex gap-4 border-t border-white/10 pt-4">
-                    <button onClick={() => openModal('story', s)} className="text-xs text-gray-300 hover:text-white"><i className="fas fa-pen"></i> এডিট</button>
-                    <button onClick={() => deleteData('stories', s.id)} className="text-xs text-rose-400 hover:text-rose-300"><i className="fas fa-trash"></i> ডিলেট</button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          );
-
-          const renderDates = () => (
-            <div className="space-y-4 max-w-lg mx-auto">
-              <button onClick={() => openModal('date')} className="w-full py-4 bg-amber-500/20 border border-amber-400/30 backdrop-blur-md rounded-xl flex justify-center items-center gap-2 hover:bg-amber-500/40 text-white transition-all shadow-lg"><i className="fas fa-plus"></i> নতুন তারিখ যোগ করুন</button>
-              {dates.map(d => {
-                const { month, day } = formatDisplayDate(d.date);
-                return (
-                  <div key={d.id} className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-4 flex items-center gap-4 shadow-lg">
-                    <div className="w-14 h-14 bg-black/20 border border-white/10 rounded-2xl flex flex-col items-center justify-center flex-shrink-0">
-                      <span className="text-[10px] text-amber-300 uppercase tracking-widest">{month}</span>
-                      <span className="text-xl text-white leading-none mt-1">{day}</span>
-                    </div>
-                    <div className="flex-1">
-                      <h4 className="text-white">{d.title}</h4>
-                      <p className="text-xs text-gray-400 mt-1">{d.type}</p>
-                    </div>
-                    <div className="flex flex-col gap-3">
-                      <button onClick={() => openModal('date', d)} className="text-gray-300 hover:text-white"><i className="fas fa-pen"></i></button>
-                      <button onClick={() => deleteData('important_dates', d.id)} className="text-rose-400 hover:text-rose-300"><i className="fas fa-trash"></i></button>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          );
-
-          const renderPasswords = () => (
-            <div className="space-y-4 max-w-lg mx-auto">
-              <div className="bg-rose-500/20 backdrop-blur-md border border-rose-400/30 p-4 rounded-xl flex gap-3 items-center text-rose-200 text-sm mb-4 shadow-lg">
-                <i className="fas fa-shield-halved text-xl"></i> এটি সম্পূর্ণ সিকিউর ফোল্ডার
-              </div>
-              <button onClick={() => openModal('password')} className="w-full py-4 bg-orange-500/20 border border-orange-400/30 backdrop-blur-md rounded-xl flex justify-center items-center gap-2 text-white hover:bg-orange-500/40 transition-all shadow-lg"><i className="fas fa-plus"></i> নতুন পাসওয়ার্ড</button>
-              {passwords.map(p => (
-                <div key={p.id} className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-5 shadow-lg">
-                  <h4 className="text-white text-lg mb-2 flex items-center gap-2"><i className="fas fa-globe text-gray-400 text-sm"></i> {p.platform}</h4>
-                  <p className="text-sm text-gray-300 mb-2"><span className="text-gray-500">ID:</span> {p.userId}</p>
-                  <p className="text-sm text-gray-300 mb-4"><span className="text-gray-500">Pass:</span> <span className="bg-black/30 px-3 py-1 rounded-lg tracking-widest font-mono ml-1">{p.password}</span></p>
-                  <div className="flex gap-4 border-t border-white/10 pt-3">
-                    <button onClick={() => openModal('password', p)} className="text-xs text-gray-300 hover:text-white"><i className="fas fa-pen"></i> এডিট</button>
-                    <button onClick={() => deleteData('passwords', p.id)} className="text-xs text-rose-400 hover:text-rose-300"><i className="fas fa-trash"></i> ডিলেট</button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          );
-
-          const renderPlans = () => (
-            <div className="space-y-4 max-w-lg mx-auto">
-              <button onClick={() => openModal('plan')} className="w-full py-4 bg-emerald-500/20 border border-emerald-400/30 backdrop-blur-md rounded-xl flex justify-center items-center gap-2 hover:bg-emerald-500/40 text-white transition-all shadow-lg"><i className="fas fa-plus"></i> নতুন পরিকল্পনা</button>
-              {plans.map(p => (
-                <div key={p.id} className="bg-white/10 backdrop-blur-xl border border-white/20 border-l-4 border-l-emerald-400 rounded-[2rem] p-6 shadow-lg">
-                  <h4 className="text-xl text-white mb-2">{p.title}</h4>
-                  <p className="text-gray-300 text-sm whitespace-pre-wrap leading-relaxed">{p.details}</p>
-                  {p.budget && <p className="mt-4 text-emerald-200 bg-emerald-500/20 inline-block px-4 py-2 rounded-xl text-sm border border-emerald-500/20">সম্ভাব্য খরচ: {formatMoney(p.budget)}</p>}
-                  <div className="mt-5 flex gap-4 border-t border-white/10 pt-4">
-                    <button onClick={() => openModal('plan', p)} className="text-xs text-gray-300 hover:text-white"><i className="fas fa-pen"></i> এডিট</button>
-                    <button onClick={() => deleteData('future_plans', p.id)} className="text-xs text-emerald-400 hover:text-emerald-300"><i className="fas fa-check"></i> বাস্তবায়ন / ডিলেট</button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          );
-
-          return (
-            <div className="min-h-screen relative text-white bg-[#0f172a]">
-
-              <div className="fixed inset-0 z-[-1]">
-                  <div className="absolute inset-0 bg-cover bg-center bg-fixed" style={{ backgroundImage: "url('./public/mahsin.jpeg')" }}></div>
-                  <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"></div>
-              </div>
-
-              {authStatus === 'locked' && !showSplash && (
-                <div className="min-h-screen flex items-center justify-center p-4 relative z-10">
-                  <div className="w-full max-w-sm flex flex-col items-center bg-white/10 backdrop-blur-xl border border-white/20 p-8 rounded-[2.5rem] shadow-2xl">
-                    <div className="w-20 h-20 rounded-full bg-gradient-to-br from-orange-400 to-rose-500 flex items-center justify-center mb-6 shadow-lg shadow-rose-500/30">
-                      <i className="fas fa-lock text-white text-3xl"></i>
-                    </div>
-                    <h1 className="text-2xl text-white mb-2 tracking-widest drop-shadow-lg text-center">TANIYA'S WORLD <span className="text-yellow-400">✨</span></h1>
-                    <p className="text-gray-200 mb-8 text-center text-sm">আপনার ব্যক্তিগত জগতে প্রবেশ করুন</p>
-                    
-                    <div className="w-full relative mb-6">
-                      <input
-                        type="password"
-                        value={pinInput}
-                        onChange={(e) => setPinInput(e.target.value)}
-                        onKeyDown={(e) => e.key === 'Enter' && handleMainLogin()}
-                        className="glass-input w-full rounded-2xl py-4 text-center text-3xl tracking-[0.4em] shadow-inner"
-                      />
-                    </div>
-                    <button onClick={handleMainLogin} className="w-full py-4 rounded-2xl bg-gradient-to-r from-orange-400 to-rose-500 hover:opacity-90 text-white text-lg shadow-xl active:scale-95 transition-all">
-                      Unlock
-                    </button>
-                  </div>
-                </div>
-              )}
-
-              {authStatus === 'unlocked' && (
-                <div className="min-h-screen flex flex-col relative z-10">
-                  <header className="px-6 pt-12 pb-6 sticky top-0 z-30 bg-black/40 backdrop-blur-2xl border-b border-white/10">
-                    <div className="flex justify-between items-center max-w-lg mx-auto w-full">
-                      <div>
-                        <h1 className="text-xl md:text-3xl text-white tracking-widest drop-shadow-md">TANIYA'S WORLD</h1>
-                        {currentView !== 'dashboard' && (
-                          <button onClick={() => setCurrentView('dashboard')} className="flex items-center gap-2 text-xs text-white mt-3 bg-white/10 border border-white/20 backdrop-blur-md px-4 py-1.5 rounded-full hover:bg-white/20 transition-all"><i className="fas fa-chevron-left"></i> ড্যাশবোর্ড</button>
-                        )}
-                      </div>
-                      <div className="flex gap-2">
-                        <button onClick={() => requireSecureAction(() => openModal('pinSettings'), 'পিন পরিবর্তন করতে Action PIN দিন')} className="w-12 h-12 rounded-full bg-white/10 border border-white/20 backdrop-blur-md flex items-center justify-center text-gray-200 hover:bg-indigo-500 hover:border-indigo-500 hover:text-white transition-all"><i className="fas fa-gear"></i></button>
-                        <button onClick={() => setAuthStatus('locked')} className="w-12 h-12 rounded-full bg-white/10 border border-white/20 backdrop-blur-md flex items-center justify-center text-gray-200 hover:bg-rose-500 hover:border-rose-500 hover:text-white transition-all"><i className="fas fa-lock"></i></button>
-                      </div>
-                    </div>
-                  </header>
-
-                  <main className="px-6 pt-8 pb-12 flex-1 max-w-lg mx-auto w-full">
-                    {currentView === 'dashboard' && renderDashboardCards()}
-                    {currentView === 'finance' && renderFinance()}
-                    {currentView === 'family' && renderMembers()}
-                    {currentView === 'stories' && renderStories()}
-                    {currentView === 'dates' && renderDates()}
-                    {currentView === 'passwords' && renderPasswords()}
-                    {currentView === 'plans' && renderPlans()}
-                  </main>
-                </div>
-              )}
-
-              {actionPinModal.show && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md">
-                  <div className="bg-slate-900/90 backdrop-blur-2xl border border-white/20 w-full max-w-xs rounded-[2rem] p-6 text-center shadow-2xl">
-                    <i className="fas fa-shield-cat text-rose-400 text-5xl mx-auto mb-4"></i>
-                    <h3 className="text-white mb-6 tracking-wide">{actionPinModal.title}</h3>
-                    <input type="password" value={actionPinInput} onChange={(e)=>setActionPinInput(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && verifyActionAndExecute()} placeholder="PIN" className="glass-input w-full rounded-xl px-4 py-4 text-center tracking-[0.5em] text-xl mb-6 shadow-inner"/>
-                    <div className="flex gap-3">
-                      <button onClick={() => {setActionPinModal({show:false}); setActionPinInput('');}} className="flex-1 py-3 bg-white/10 hover:bg-white/20 border border-white/10 rounded-xl text-gray-300 transition-all">বাতিল</button>
-                      <button onClick={verifyActionAndExecute} className="flex-1 py-3 bg-rose-500/80 hover:bg-rose-500 border border-rose-500/50 rounded-xl text-white transition-all shadow-lg">নিশ্চিত করুন</button>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {passFolderPinModal && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md">
-                  <div className="bg-slate-900/90 backdrop-blur-2xl border border-white/20 w-full max-w-xs rounded-[2rem] p-6 text-center shadow-2xl">
-                    <i className="fas fa-user-secret text-orange-400 text-5xl mx-auto mb-4"></i>
-                    <h3 className="text-white mb-2 tracking-wide">সিকিউর ফোল্ডার</h3>
-                    <p className="text-xs text-gray-400 mb-6">প্রবেশ করতে পিন প্রয়োজন</p>
-                    <input type="password" value={passPinInput} onChange={(e)=>setPassPinInput(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && openPasswordFolder()} placeholder="PIN" className="glass-input w-full rounded-xl px-4 py-4 text-center tracking-[0.5em] text-xl mb-6 shadow-inner"/>
-                    <div className="flex gap-3">
-                      <button onClick={() => setPassFolderPinModal(false)} className="flex-1 py-3 bg-white/10 hover:bg-white/20 border border-white/10 rounded-xl text-gray-300 transition-all">বাতিল</button>
-                      <button onClick={openPasswordFolder} className="flex-1 py-3 bg-orange-500/80 hover:bg-orange-500 border border-orange-500/50 rounded-xl text-white transition-all shadow-lg">প্রবেশ করুন</button>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {activeModal === 'pinSettings' && (
-                <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/70 backdrop-blur-md p-4">
-                  <form onSubmit={savePins} className="bg-slate-900/95 backdrop-blur-2xl border border-white/20 w-full max-w-sm rounded-[2.5rem] p-8 shadow-2xl space-y-5">
-                    <h3 className="text-xl text-white mb-6 text-center">PIN পরিবর্তন</h3>
-                    
-                    {modalError && (
-                      <div className="bg-rose-500/20 border border-rose-500/50 text-rose-200 text-sm p-3 rounded-xl mb-4 text-center">
-                        {modalError}
-                      </div>
-                    )}
-                    
-                    <div>
-                      <label className="block text-sm text-gray-300 mb-2 ml-1">Main PIN (লক স্ক্রিন)</label>
-                      <input type="password" name="main" defaultValue={pins.main} className="glass-input w-full rounded-xl p-4 shadow-inner"/>
-                    </div>
-                    
-                    <div>
-                      <label className="block text-sm text-gray-300 mb-2 ml-1">Action PIN (তথ্য মোছার জন্য)</label>
-                      <input type="password" name="action" defaultValue={pins.action} className="glass-input w-full rounded-xl p-4 shadow-inner"/>
-                    </div>
-                    
-                    <div>
-                      <label className="block text-sm text-gray-300 mb-2 ml-1">Password PIN (সিকিউর ফোল্ডার)</label>
-                      <input type="password" name="password" defaultValue={pins.password} className="glass-input w-full rounded-xl p-4 shadow-inner"/>
-                    </div>
-
-                    <div className="flex gap-3 pt-4">
-                      <button type="button" onClick={() => setActiveModal(null)} className="flex-1 py-4 bg-white/10 hover:bg-white/20 border border-white/10 rounded-xl text-white transition-all">বাতিল</button>
-                      <button type="submit" disabled={isSaving} className="flex-1 py-4 bg-indigo-500/80 hover:bg-indigo-500 border border-indigo-500/50 rounded-xl text-white shadow-lg transition-all disabled:opacity-50">
-                        {isSaving ? 'সংরক্ষণ হচ্ছে...' : 'সংরক্ষণ করুন'}
-                      </button>
-                    </div>
-                  </form>
-                </div>
-              )}
-
-              {activeModal && activeModal !== 'pinSettings' && (
-                <div className="fixed inset-0 z-40 flex flex-col justify-end bg-black/70 backdrop-blur-md sm:items-center sm:justify-center p-0 sm:p-4">
-                  <div className="bg-slate-900/95 backdrop-blur-2xl border border-white/20 w-full sm:max-w-md rounded-t-[2.5rem] sm:rounded-3xl p-6 max-h-[90vh] overflow-y-auto shadow-2xl custom-scrollbar">
-                    <div className="flex justify-between items-center mb-8">
-                      <h3 className="text-xl text-white tracking-wide">তথ্য আপডেট</h3>
-                      <button onClick={() => setActiveModal(null)} className="w-10 h-10 bg-white/10 border border-white/10 flex items-center justify-center text-gray-300 rounded-full hover:bg-rose-500 hover:text-white hover:border-rose-500 transition-all"><i className="fas fa-times"></i></button>
-                    </div>
-
-                    <form onSubmit={async (e) => {
-                      e.preventDefault();
-                      const fd = new FormData(e.target);
-                      const data = Object.fromEntries(fd.entries());
-                      
-                      if(data.amount) data.amount = toEnglishNumber(data.amount);
-                      if(data.balance) data.balance = toEnglishNumber(data.balance);
-                      if(data.budget) data.budget = toEnglishNumber(data.budget);
-
-                      let collectionName = '';
-                      if (activeModal === 'account') collectionName = 'finance_accounts';
-                      if (activeModal === 'transaction') collectionName = 'finance_transactions';
-                      if (activeModal === 'member') {
-                         collectionName = 'family_members';
-                         data.imageUrl = uploadedImage || editingItem?.imageUrl || '';
-                      }
-                      if (activeModal === 'story') collectionName = 'stories';
-                      if (activeModal === 'date') collectionName = 'important_dates';
-                      if (activeModal === 'password') collectionName = 'passwords';
-                      if (activeModal === 'plan') collectionName = 'future_plans';
-
-                      if (activeModal === 'transaction') {
-                        const accId = data.accountId;
-                        const acc = accounts.find(a => a.id === accId);
-                        if(acc) {
-                          const amount = Number(data.amount);
-                          let newBalance = Number(toEnglishNumber(acc.balance));
-                          if (data.type === 'income' || data.type === 'borrowed') newBalance += amount;
-                          if (data.type === 'expense' || data.type === 'lent') newBalance -= amount;
-                          saveData('finance_accounts', {...acc, balance: String(newBalance)}, acc.id);
-                        }
-                      }
-
-                      const docId = editingItem ? editingItem.id : Date.now().toString();
-
-                      if (editingItem) {
-                        requireSecureAction(async () => {
-                          await saveData(collectionName, {...editingItem, ...data}, docId);
-                          if (activeModal === 'member') {
-                            if (data.dob) await setDoc(doc(db, 'artifacts', appId, 'users', 'taniya_admin_123', 'important_dates', docId + '_dob'), { title: `${data.name} এর জন্মদিন`, type: 'জন্মদিন', date: data.dob });
-                            
-                            if (data.marriageDate) {
-                                const rel = data.relation.trim();
-                                if(rel === 'আমি' || rel === 'স্ত্রী' || rel === 'স্বামী' || rel === 'স্বামী সাবেক') {
-                                    await setDoc(doc(db, 'artifacts', appId, 'users', 'taniya_admin_123', 'important_dates', 'our_marriage_anniversary'), { title: `আমাদের বিবাহ বার্ষিকী`, type: 'বিবাহ বার্ষিকী', date: data.marriageDate });
-                                    await deleteDoc(doc(db, 'artifacts', appId, 'users', 'taniya_admin_123', 'important_dates', docId + '_marriage')).catch(()=>{});
-                                } else {
-                                    await setDoc(doc(db, 'artifacts', appId, 'users', 'taniya_admin_123', 'important_dates', docId + '_marriage'), { title: `${data.name} এর বিবাহ বার্ষিকী`, type: 'বিবাহ বার্ষিকী', date: data.marriageDate });
-                                }
-                            }
-                            
-                            if (data.deathDate) await setDoc(doc(db, 'artifacts', appId, 'users', 'taniya_admin_123', 'important_dates', docId + '_death'), { title: `${data.name} এর মৃত্যু বার্ষিকী`, type: 'মৃত্যু বার্ষিকী', date: data.deathDate });
-                          }
-                        }, 'তথ্য এডিট করতে চান?');
-                      } else {
-                        await saveData(collectionName, data, docId);
-                        if (activeModal === 'member') {
-                          if (data.dob) await setDoc(doc(db, 'artifacts', appId, 'users', 'taniya_admin_123', 'important_dates', docId + '_dob'), { title: `${data.name} এর জন্মদিন`, type: 'জন্মদিন', date: data.dob });
-                          
-                          if (data.marriageDate) {
-                                const rel = data.relation.trim();
-                                if(rel === 'আমি' || rel === 'স্ত্রী' || rel === 'স্বামী' || rel === 'স্বামী সাবেক') {
-                                    await setDoc(doc(db, 'artifacts', appId, 'users', 'taniya_admin_123', 'important_dates', 'our_marriage_anniversary'), { title: `আমাদের বিবাহ বার্ষিকী`, type: 'বিবাহ বার্ষিকী', date: data.marriageDate });
-                                } else {
-                                    await setDoc(doc(db, 'artifacts', appId, 'users', 'taniya_admin_123', 'important_dates', docId + '_marriage'), { title: `${data.name} এর বিবাহ বার্ষিকী`, type: 'বিবাহ বার্ষিকী', date: data.marriageDate });
-                                }
-                          }
-                          
-                          if (data.deathDate) await setDoc(doc(db, 'artifacts', appId, 'users', 'taniya_admin_123', 'important_dates', docId + '_death'), { title: `${data.name} এর মৃত্যু বার্ষিকী`, type: 'মৃত্যু বার্ষিকী', date: data.deathDate });
-                        }
-                      }
-                    }} className="space-y-4">
-                      
-                      {modalError && (
-                        <div className="bg-rose-500/20 border border-rose-500/50 text-rose-200 text-sm p-3 rounded-xl mb-4 text-center">
-                          {modalError}
-                        </div>
-                      )}
-
-                      {activeModal === 'account' && (
-                        <>
-                          <input name="name" defaultValue={editingItem?.name} placeholder="একাউন্টের নাম (যেমন: ডাচ বাংলা)" required className="glass-input w-full rounded-xl p-4 shadow-inner" />
-                          <select name="type" defaultValue={editingItem?.type || 'bank'} className="glass-input w-full rounded-xl p-4 shadow-inner [&>option]:bg-slate-800">
-                            <option value="cash">ক্যাশ (নগদ টাকা)</option>
-                            <option value="bank">ব্যাংক</option>
-                            <option value="bkash">বিকাশ/নগদ</option>
-                          </select>
-                          <input name="balance" type="text" inputMode="numeric" defaultValue={editingItem?.balance || 0} placeholder="প্রারম্ভিক ব্যালেন্স (অ্যাকাউন্ট খোলার সময়ের ব্যালেন্স)" required className="glass-input w-full rounded-xl p-4 shadow-inner" />
-                        </>
-                      )}
-
-                      {activeModal === 'transaction' && (
-                        <>
-                          <input name="source" defaultValue={editingItem?.source} placeholder={editingItem?.type==='income'?'আয়ের উৎস (যেমন বেতন)':editingItem?.type==='expense'?'ব্যয়ের নাম (যেমন বাজার)':editingItem?.type==='borrowed'?'কার কাছ থেকে ধার নিয়েছো?':'কাকে ধার দিয়েছো / কোন দোকানে বাকি?'} required className="glass-input w-full rounded-xl p-4 shadow-inner" />
-                          <input name="amount" type="text" inputMode="numeric" defaultValue={editingItem?.amount} placeholder="টাকার পরিমান" required className="glass-input w-full rounded-xl p-4 shadow-inner" />
-                          <input name="date" type="date" defaultValue={editingItem?.date || new Date().toISOString().split('T')[0]} required className="glass-input w-full rounded-xl p-4 shadow-inner [&::-webkit-calendar-picker-indicator]:filter [&::-webkit-calendar-picker-indicator]:invert" />
-                          <select name="accountId" defaultValue={editingItem?.accountId} required className="glass-input w-full rounded-xl p-4 shadow-inner [&>option]:bg-slate-800">
-                            <option value="">কোন একাউন্ট থেকে?</option>
-                            {accounts.map(a => <option key={a.id} value={a.id}>{a.name} ({formatMoney(getAccountCurrentBalance(a.id))})</option>)}
-                          </select>
-                          <textarea name="note" defaultValue={editingItem?.note} placeholder="বিস্তারিত বিবরণ বা বাজারের লিস্ট..." rows={3} className="glass-input w-full rounded-xl p-4 resize-none shadow-inner"></textarea>
-                          <input type="hidden" name="type" value={editingItem?.type || 'income'} />
-                        </>
-                      )}
-
-                      {activeModal === 'member' && (
-                        <>
-                          <div className="flex flex-col items-center mb-6">
-                             <div className="w-28 h-28 rounded-full bg-black/40 border-2 border-dashed border-white/30 flex items-center justify-center overflow-hidden mb-4 relative group shadow-inner">
-                                {(uploadedImage || editingItem?.imageUrl) ? (
-                                  <img src={uploadedImage || editingItem?.imageUrl} className="w-full h-full object-cover" />
-                                ) : (
-                                  <i className="fas fa-user text-4xl text-white/30"></i>
-                                )}
-                                <input type="file" accept="image/*" onChange={handleImageChange} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
-                             </div>
-                             <div className="text-xs text-white bg-white/10 border border-white/20 px-5 py-2.5 rounded-full flex items-center gap-2 tracking-wide shadow-lg">
-                                <i className="fas fa-camera"></i> ছবি নির্বাচন করুন
-                             </div>
-                          </div>
-                          <input name="name" defaultValue={editingItem?.name} placeholder="নাম" required className="glass-input w-full rounded-xl p-4 shadow-inner" />
-                          <input name="relation" defaultValue={editingItem?.relation} placeholder="সম্পর্ক (আমি, স্বামী, স্ত্রী, ছেলে...)" required className="glass-input w-full rounded-xl p-4 shadow-inner" />
-                          
-                          <div className="grid grid-cols-2 gap-2">
-                            <div className="relative">
-                              <label className="block text-xs text-gray-400 mb-1 ml-1">জন্ম তারিখ (ঐচ্ছিক)</label>
-                              <input name="dob" type="date" defaultValue={editingItem?.dob} className="glass-input w-full rounded-xl p-3 shadow-inner [&::-webkit-calendar-picker-indicator]:filter [&::-webkit-calendar-picker-indicator]:invert" />
-                            </div>
-                            <div className="relative">
-                              <label className="block text-xs text-gray-400 mb-1 ml-1">মৃত্যু তারিখ (ঐচ্ছিক)</label>
-                              <input name="deathDate" type="date" defaultValue={editingItem?.deathDate} className="glass-input w-full rounded-xl p-3 shadow-inner [&::-webkit-calendar-picker-indicator]:filter [&::-webkit-calendar-picker-indicator]:invert" />
-                            </div>
-                          </div>
-                          
-                          <div className="relative">
-                            <label className="block text-xs text-gray-400 mb-1 ml-1">বিবাহের তারিখ (ঐচ্ছিক)</label>
-                            <input name="marriageDate" type="date" defaultValue={editingItem?.marriageDate} className="glass-input w-full rounded-xl p-4 shadow-inner [&::-webkit-calendar-picker-indicator]:filter [&::-webkit-calendar-picker-indicator]:invert" />
-                          </div>
-
-                          <input name="mobile" type="text" inputMode="numeric" defaultValue={editingItem?.mobile} placeholder="মোবাইল নাম্বার" className="glass-input w-full rounded-xl p-4 shadow-inner" />
-                          <textarea name="note" defaultValue={editingItem?.note} placeholder="বিস্তারিত ঠিকানা, পেশা ইত্যাদি..." rows={4} className="glass-input w-full rounded-xl p-4 resize-none shadow-inner"></textarea>
-                        </>
-                      )}
-
-                      {activeModal === 'story' && (
-                        <>
-                          <input name="title" defaultValue={editingItem?.title} placeholder="গল্পের শিরোনাম" required className="glass-input w-full rounded-xl p-4 shadow-inner" />
-                          <textarea name="content" defaultValue={editingItem?.content} placeholder="তোমার মনের ভাবগুলো বিস্তারিত লেখো..." rows={6} required className="glass-input w-full rounded-xl p-4 resize-none shadow-inner"></textarea>
-                        </>
-                      )}
-
-                      {activeModal === 'date' && (
-                        <>
-                          <input name="title" defaultValue={editingItem?.title} placeholder="কার জন্মদিন বা বিবাহ বার্ষিকী?" required className="glass-input w-full rounded-xl p-4 shadow-inner" />
-                          <select name="type" defaultValue={editingItem?.type || 'জন্মদিন'} className="glass-input w-full rounded-xl p-4 shadow-inner [&>option]:bg-slate-800">
-                            <option value="জন্মদিন">জন্মদিন</option>
-                            <option value="বিবাহ বার্ষিকী">বিবাহ বার্ষিকী</option>
-                            <option value="মৃত্যু বার্ষিকী">মৃত্যু বার্ষিকী</option>
-                            <option value="অন্যান্য">অন্যান্য</option>
-                          </select>
-                          <input name="date" type="date" defaultValue={editingItem?.date} required className="glass-input w-full rounded-xl p-4 shadow-inner [&::-webkit-calendar-picker-indicator]:filter [&::-webkit-calendar-picker-indicator]:invert" />
-                        </>
-                      )}
-
-                      {activeModal === 'password' && (
-                        <>
-                          <input name="platform" defaultValue={editingItem?.platform} placeholder="প্ল্যাটফর্ম (যেমন: Facebook, Gmail)" required className="glass-input w-full rounded-xl p-4 shadow-inner" />
-                          <input name="userId" defaultValue={editingItem?.userId} placeholder="ইউজার আইডি বা ইমেইল" required className="glass-input w-full rounded-xl p-4 shadow-inner" />
-                          <input name="password" type="password" defaultValue={editingItem?.password} placeholder="পাসওয়ার্ড" required className="glass-input w-full rounded-xl p-4 shadow-inner" />
-                        </>
-                      )}
-
-                      {activeModal === 'plan' && (
-                        <>
-                          <input name="title" defaultValue={editingItem?.title} placeholder="পরিকল্পনার নাম (যেমন: সিলেট ট্যুর)" required className="glass-input w-full rounded-xl p-4 shadow-inner" />
-                          <textarea name="details" defaultValue={editingItem?.details} placeholder="বিস্তারিত (কবে যাবে, কাদের সাথে ইত্যাদি)..." rows={4} required className="glass-input w-full rounded-xl p-4 resize-none shadow-inner"></textarea>
-                          <input name="budget" type="text" inputMode="numeric" defaultValue={editingItem?.budget} placeholder="সম্ভাব্য খরচ (ঐচ্ছিক)" className="glass-input w-full rounded-xl p-4 shadow-inner" />
-                        </>
-                      )}
-
-                      <div className="flex gap-3 pt-6">
-                        <button type="button" onClick={() => setActiveModal(null)} className="flex-1 py-4 bg-white/10 hover:bg-white/20 border border-white/10 rounded-xl text-white transition-all shadow-lg">বাতিল</button>
-                        <button type="submit" disabled={isSaving} className="flex-1 py-4 bg-indigo-500/80 hover:bg-indigo-500 border border-indigo-500/50 rounded-xl text-white shadow-lg transition-all disabled:opacity-50">
-                          {isSaving ? 'সংরক্ষণ হচ্ছে...' : 'সংরক্ষণ করুন'}
-                        </button>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              )}
-            </div>
-          );
+            `;
+            wrapper.appendChild(floorDiv);
         }
 
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<App />);
+        // 2. Handle Unit Selection
+        document.querySelectorAll('.unit').forEach(btn => {
+            btn.addEventListener('click', function() {
+                if(this.classList.contains('disabled')) return;
+                
+                // Remove previous selection
+                document.querySelectorAll('.unit').forEach(b => b.classList.remove('selected'));
+                
+                // Add new selection
+                this.classList.add('selected');
+                const floor = this.getAttribute('data-floor');
+                const unit = this.getAttribute('data-unit');
+                
+                infoDisplay.textContent = `নির্বাচিত: ${floor} তলা - ইউনিট ${unit}`;
+                hiddenInput.value = `${floor} তলা - ইউনিট ${unit}`;
+            });
+        });
+
+        // 3. Handle Form Submit
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            if(!hiddenInput.value) {
+                alert('দয়া করে আগে আপনার পছন্দের ফ্ল্যাট নির্বাচন করুন!');
+                return;
+            }
+            document.getElementById('bookingForm').style.display = 'none';
+            document.getElementById('successMsg').style.display = 'block';
+        });
+
+        // 4. Scroll Reveal Animation
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        reveals.forEach(reveal => {
+            observer.observe(reveal);
+        });
     </script>
 </body>
 </html>
