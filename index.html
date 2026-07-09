@@ -1,287 +1,620 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>মোজাম্মেল টাওয়ার | আভিজাত্যের নতুন সংজ্ঞা</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Hind+Siliguri:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-dark: #080808;
-            --bg-card: rgba(255, 255, 255, 0.05);
-            --gold: #D4AF37;
-            --gold-glow: rgba(212, 175, 55, 0.4);
-            --text-white: #ffffff;
-            --text-gray: #b0b0b0;
-            --border-glass: rgba(255, 255, 255, 0.1);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>মোজাম্মেল টাওয়ার | রাজউকের পাশে প্রিমিয়াম আবাসন — Mozammel Tower</title>
+<meta name="description" content="মোজাম্মেল টাওয়ার — রাজউকের পাশে ১০ তলা প্রিমিয়াম আবাসিক ভবন। ৪০টি এক্সক্লুসিভ এপার্টমেন্ট, আধুনিক স্থাপত্য, সম্পূর্ণ নিরাপত্তা ব্যবস্থা।">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;500;600;700;800&family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#080808; --bg2:#0d0d0d; --card:rgba(255,255,255,.05); --border:rgba(255,255,255,.1);
+    --gold:#D4AF37; --gold-soft:rgba(212,175,55,.35); --gold-deep:#9c7d22;
+    --brick:#8a3b2e; --white:#fff; --gray:#a8a8a8; --gray-dim:#6f6f6f;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Hind Siliguri',sans-serif;background:var(--bg);color:var(--white);overflow-x:hidden;}
+  h1,h2,h3,h4{font-family:'Noto Serif Bengali',serif;font-weight:700;}
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  ::selection{background:var(--gold);color:#000;}
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
+  /* Scrollbar accent */
+  ::-webkit-scrollbar{width:8px;}
+  ::-webkit-scrollbar-thumb{background:var(--gold-deep);}
+  ::-webkit-scrollbar-track{background:#111;}
 
-        body {
-            font-family: 'Hind Siliguri', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-white);
-            overflow-x: hidden;
-        }
+  /* ===== Top utility bar ===== */
+  .topbar{background:#050505;border-bottom:1px solid #161616;padding:.5rem 5%;display:flex;justify-content:space-between;font-size:.82rem;color:var(--gray-dim);}
+  .topbar a{color:var(--gray);text-decoration:none;margin-left:1.2rem;}
+  .topbar a:hover{color:var(--gold);}
+  .topbar .left span{margin-right:1.4rem;}
 
-        h1, h2, h3 { font-family: 'Noto Serif Bengali', serif; font-weight: 700; }
+  /* ===== Header ===== */
+  header{position:sticky;top:0;z-index:1000;padding:1rem 5%;display:flex;justify-content:space-between;align-items:center;background:rgba(8,8,8,.72);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+  .brand{display:flex;align-items:center;gap:.7rem;}
+  .brand-mark{width:42px;height:42px;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Noto Serif Bengali',serif;color:var(--gold);font-size:1.1rem;transform:rotate(45deg);}
+  .brand-mark span{transform:rotate(-45deg);}
+  .logo-text{font-size:1.3rem;color:var(--gold);letter-spacing:.5px;line-height:1.1;}
+  .logo-text small{display:block;font-family:'Hind Siliguri',sans-serif;font-size:.65rem;color:var(--gray);letter-spacing:2px;font-weight:400;}
+  nav ul{list-style:none;display:flex;gap:2.1rem;}
+  nav a{text-decoration:none;font-size:.98rem;font-weight:500;position:relative;transition:.3s;}
+  nav a::after{content:'';position:absolute;width:0;height:2px;bottom:-6px;left:0;background:var(--gold);transition:width .3s;}
+  nav a:hover::after{width:100%;}
+  nav a:hover{color:var(--gold);}
+  .header-cta{display:flex;align-items:center;gap:1rem;}
+  .btn-call{border:1px solid var(--gold);color:var(--gold);padding:.55rem 1.3rem;border-radius:2px;text-decoration:none;font-size:.9rem;font-weight:600;white-space:nowrap;transition:.3s;}
+  .btn-call:hover{background:var(--gold);color:#000;}
+  .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;}
+  .burger span{width:24px;height:2px;background:var(--gold);}
 
-        /* Glassmorphism Navbar */
-        header {
-            position: fixed; width: 100%; top: 0; z-index: 1000;
-            padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center;
-            background: rgba(8, 8, 8, 0.6);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border-bottom: 1px solid var(--border-glass);
-        }
-        .logo { font-family: 'Noto Serif Bengali', serif; font-size: 1.5rem; color: var(--gold); letter-spacing: 1px; }
-        nav ul { list-style: none; display: flex; gap: 2rem; }
-        nav a { color: var(--text-white); text-decoration: none; font-size: 1rem; font-weight: 500; transition: 0.3s; position: relative; }
-        nav a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0; background: var(--gold); transition: width 0.3s; }
-        nav a:hover::after { width: 100%; }
-        nav a:hover { color: var(--gold); }
+  /* ===== Hero ===== */
+  .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;position:relative;padding:6rem 20px 4rem;
+    background:linear-gradient(to bottom,rgba(8,8,8,.55),rgba(8,8,8,.65) 40%,rgba(8,8,8,.97)),
+    url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2072&auto=format&fit=crop') center/cover fixed;}
+  .hero-content{position:relative;z-index:2;animation:fadeUp 1.2s ease;max-width:900px;}
+  .tagline{color:var(--gold);letter-spacing:4px;font-size:.95rem;text-transform:uppercase;margin-bottom:1.2rem;display:inline-block;border-top:1px solid var(--gold-soft);border-bottom:1px solid var(--gold-soft);padding:.4rem 1.2rem;}
+  .hero h1{font-size:clamp(2.4rem,6vw,4.6rem);margin-bottom:1.2rem;text-shadow:0 10px 30px rgba(0,0,0,.5);line-height:1.15;}
+  .hero p{font-size:1.15rem;color:#dcdcdc;max-width:680px;margin:0 auto 2.4rem;line-height:1.8;}
+  .hero-btns{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;}
+  .btn-gold{background:var(--gold);color:#000;padding:1rem 2.4rem;border:1px solid var(--gold);text-decoration:none;font-size:1.05rem;font-weight:700;transition:.35s;border-radius:2px;}
+  .btn-gold:hover{box-shadow:0 0 35px var(--gold-soft);transform:translateY(-3px);}
+  .btn-outline{background:transparent;color:var(--white);padding:1rem 2.4rem;border:1px solid rgba(255,255,255,.35);text-decoration:none;font-size:1.05rem;font-weight:600;transition:.35s;border-radius:2px;}
+  .btn-outline:hover{border-color:var(--gold);color:var(--gold);}
 
-        /* Hero Section */
-        .hero {
-            min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
-            text-align: center; position: relative; padding: 0 20px;
-            background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2072&auto=format&fit=crop') center/cover no-repeat fixed;
-        }
-        .hero::before { content: ''; position: absolute; top:0; left:0; right:0; bottom:0; background: linear-gradient(to bottom, rgba(8,8,8,0.8), rgba(8,8,8,0.4), rgba(8,8,8,0.9)); }
-        .hero-content { position: relative; z-index: 2; animation: fadeUp 1.5s ease; }
-        .tagline { color: var(--gold); letter-spacing: 3px; font-size: 1rem; text-transform: uppercase; margin-bottom: 1rem; display: block; animation: pulse 2s infinite; }
-        .hero h1 { font-size: 4.5rem; margin-bottom: 1.5rem; text-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .hero p { font-size: 1.3rem; color: #e0e0e0; max-width: 700px; margin: 0 auto 2.5rem; }
-        .btn-gold { background: transparent; color: var(--gold); padding: 1rem 2.5rem; border: 1px solid var(--gold); text-decoration: none; font-size: 1.1rem; font-weight: 600; transition: all 0.4s ease; border-radius: 2px; }
-        .btn-gold:hover { background: var(--gold); color: #000; box-shadow: 0 0 30px var(--gold-glow); transform: translateY(-3px); }
+  .hero-stats{position:relative;z-index:2;display:flex;gap:0;margin-top:4rem;border-top:1px solid var(--border);padding-top:2rem;flex-wrap:wrap;justify-content:center;max-width:900px;}
+  .stat{padding:0 2.2rem;text-align:center;border-right:1px solid var(--border);}
+  .stat:last-child{border-right:none;}
+  .stat b{display:block;font-family:'Noto Serif Bengali',serif;font-size:2rem;color:var(--gold);}
+  .stat span{font-size:.85rem;color:var(--gray);}
 
-        /* Generic Section Styles */
-        section { padding: 6rem 5%; position: relative; }
-        .section-header { text-align: center; margin-bottom: 4rem; }
-        .section-header h2 { font-size: 2.8rem; color: var(--text-white); margin-bottom: 0.5rem; }
-        .section-header p { color: var(--gold); font-size: 1.1rem; }
-        .divider { width: 80px; height: 2px; background: var(--gold); margin: 1rem auto; }
+  .scroll-cue{position:absolute;bottom:1.6rem;left:50%;transform:translateX(-50%);z-index:2;color:var(--gray);font-size:.8rem;display:flex;flex-direction:column;align-items:center;gap:.4rem;animation:bounce 2s infinite;}
+  .scroll-cue .line{width:1px;height:30px;background:linear-gradient(var(--gold),transparent);}
 
-        /* Reveal Animation on Scroll */
-        .reveal { opacity: 0; transform: translateY(40px); transition: all 1s ease; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+  /* ===== Marquee strip ===== */
+  .marquee-strip{background:var(--gold);color:#000;padding:.7rem 0;overflow:hidden;white-space:nowrap;font-weight:700;font-size:.95rem;}
+  .marquee-strip .track{display:inline-block;animation:scrollLeft 22s linear infinite;}
+  .marquee-strip .track span{margin:0 2.2rem;}
 
-        /* Amenities Grid */
-        .amenities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; }
-        .glass-card { background: var(--bg-card); backdrop-filter: blur(10px); border: 1px solid var(--border-glass); padding: 2rem; border-radius: 10px; transition: all 0.4s ease; text-align: center; }
-        .glass-card:hover { transform: translateY(-10px); border-color: var(--gold); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-        .glass-card .icon { font-size: 2.5rem; color: var(--gold); margin-bottom: 1rem; }
-        .glass-card h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
+  /* ===== Generic section ===== */
+  section{padding:6rem 5%;position:relative;}
+  .section-header{text-align:center;margin-bottom:3.5rem;}
+  .eyebrow{color:var(--gold);font-size:.9rem;letter-spacing:3px;text-transform:uppercase;display:block;margin-bottom:.8rem;}
+  .section-header h2{font-size:clamp(1.9rem,4vw,2.7rem);margin-bottom:.5rem;}
+  .divider{width:70px;height:2px;background:var(--gold);margin:1rem auto 0;}
+  .section-sub{color:var(--gray);max-width:600px;margin:0.8rem auto 0;font-size:1.02rem;}
 
-        /* Interactive Booking & Floor Plan */
-        .booking-bg { background: linear-gradient(to bottom, #080808, #121212, #080808); }
-        .building-wrapper { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column-reverse; gap: 1rem; }
-        .floor-block { display: flex; align-items: stretch; border: 1px solid #222; background: rgba(255,255,255,0.02); border-radius: 4px; overflow: hidden; transition: 0.3s; }
-        .floor-block:hover { border-color: var(--text-gray); background: rgba(255,255,255,0.05); }
-        .floor-num { width: 80px; background: #111; display: flex; align-items: center; justify-content: center; font-family: 'Noto Serif Bengali', serif; font-size: 1.2rem; color: var(--gold); border-right: 1px solid #222; padding: 1rem 0; }
-        .units { display: flex; flex: 1; gap: 1px; background: #222; }
-        .unit { flex: 1; background: #0f0f0f; color: var(--text-gray); border: none; padding: 1.2rem 0; cursor: pointer; font-size: 1.2rem; font-family: 'Hind Siliguri', sans-serif; transition: all 0.3s; position: relative; }
-        .unit:hover { background: #1a1a1a; color: #fff; }
-        .unit.selected { background: var(--gold); color: #000; font-weight: 700; }
-        .unit.selected::after { content: '✓'; position: absolute; top: 2px; right: 5px; font-size: 0.8rem; }
-        .unit.disabled { background: #0a0a0a; color: #333; cursor: not-allowed; }
+  .reveal{opacity:0;transform:translateY(40px);transition:all .9s cubic-bezier(.2,.7,.3,1);}
+  .reveal.active{opacity:1;transform:translateY(0);}
 
-        /* Booking Form Glassmorphism */
-        .form-container { max-width: 600px; margin: 4rem auto 0; background: var(--bg-card); backdrop-filter: blur(15px); border: 1px solid var(--border-glass); padding: 3rem; border-radius: 10px; box-shadow: 0 10px 40px rgba(0,0,0,0.4); }
-        .selected-info { text-align: center; color: var(--gold); font-size: 1.3rem; margin-bottom: 2rem; font-weight: 600; height: 30px; }
-        .form-group { margin-bottom: 1.5rem; }
-        .form-group label { display: block; color: var(--text-gray); margin-bottom: 0.5rem; }
-        .form-control { width: 100%; background: rgba(0,0,0,0.3); border: 1px solid #333; color: #fff; padding: 0.9rem; border-radius: 4px; font-family: 'Hind Siliguri', sans-serif; font-size: 1rem; transition: 0.3s; }
-        .form-control:focus { outline: none; border-color: var(--gold); background: rgba(0,0,0,0.5); }
-        .submit-btn { width: 100%; padding: 1rem; background: var(--gold); color: #000; border: none; font-size: 1.1rem; font-weight: 700; cursor: pointer; border-radius: 4px; transition: 0.3s; }
-        .submit-btn:hover { box-shadow: 0 0 20px var(--gold-glow); }
+  /* ===== About / Why choose ===== */
+  .about-wrap{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;max-width:1200px;margin:0 auto;align-items:center;}
+  .about-img{position:relative;}
+  .about-img img{border-radius:6px;border:1px solid var(--border);}
+  .about-img .badge{position:absolute;bottom:-1.5rem;right:-1rem;background:var(--gold);color:#000;padding:1.2rem 1.6rem;border-radius:4px;font-family:'Noto Serif Bengali',serif;text-align:center;box-shadow:0 15px 30px rgba(0,0,0,.4);}
+  .about-img .badge b{display:block;font-size:1.8rem;}
+  .about-img .badge span{font-size:.75rem;font-weight:500;font-family:'Hind Siliguri',sans-serif;}
+  .about-text p{color:var(--gray);line-height:1.9;margin-bottom:1.2rem;font-size:1.02rem;}
+  .why-list{list-style:none;margin-top:1.5rem;display:grid;gap:1rem;}
+  .why-list li{display:flex;gap:.8rem;align-items:flex-start;color:#ddd;font-size:.98rem;}
+  .why-list li i{color:var(--gold);font-style:normal;font-weight:700;}
 
-        /* Footer */
-        footer { background: #050505; padding: 3rem 5%; text-align: center; border-top: 1px solid #111; }
-        footer h3 { color: var(--gold); font-size: 1.8rem; margin-bottom: 1rem; }
-        footer p { color: var(--text-gray); margin-bottom: 0.5rem; }
+  /* ===== Amenities ===== */
+  .amenities-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.8rem;max-width:1200px;margin:0 auto;}
+  .glass-card{background:var(--card);backdrop-filter:blur(10px);border:1px solid var(--border);padding:2.2rem 1.8rem;border-radius:8px;transition:all .4s ease;text-align:center;}
+  .glass-card:hover{transform:translateY(-8px);border-color:var(--gold);box-shadow:0 10px 30px rgba(0,0,0,.3);}
+  .glass-card .icon{font-size:2.3rem;color:var(--gold);margin-bottom:1rem;}
+  .glass-card h3{font-size:1.15rem;margin-bottom:.5rem;}
+  .glass-card p{color:var(--gray);font-size:.92rem;line-height:1.6;}
 
-        /* Animations */
-        @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes pulse { 0% { opacity: 0.6; transform: scale(1); } 50% { opacity: 1; transform: scale(1.05); } 100% { opacity: 0.6; transform: scale(1); } }
+  /* ===== Gallery ===== */
+  .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:180px;gap:.8rem;max-width:1200px;margin:0 auto;}
+  .gallery-grid img{width:100%;height:100%;object-fit:cover;border-radius:6px;transition:.4s;filter:grayscale(15%);}
+  .gallery-grid img:hover{filter:grayscale(0%);transform:scale(1.02);}
+  .g-tall{grid-row:span 2;}
+  .g-wide{grid-column:span 2;}
 
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.8rem; }
-            nav ul { display: none; }
-            .units { flex-direction: column; }
-            .unit { padding: 0.8rem 0; }
-        }
-    </style>
+  /* ===== Floor plan / booking ===== */
+  .booking-bg{background:linear-gradient(to bottom,#080808,#111,#080808);}
+  .building-wrapper{max-width:900px;margin:0 auto;display:flex;flex-direction:column-reverse;gap:.9rem;}
+  .floor-block{display:flex;align-items:stretch;border:1px solid #222;background:rgba(255,255,255,.02);border-radius:4px;overflow:hidden;transition:.3s;}
+  .floor-block:hover{border-color:#3a3a3a;background:rgba(255,255,255,.05);}
+  .floor-num{width:80px;background:#111;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Noto Serif Bengali',serif;font-size:1.15rem;color:var(--gold);border-right:1px solid #222;padding:1rem 0;}
+  .floor-num small{font-family:'Hind Siliguri',sans-serif;font-size:.6rem;color:var(--gray-dim);}
+  .units{display:flex;flex:1;gap:1px;background:#222;}
+  .unit{flex:1;background:#0f0f0f;color:var(--gray);border:none;padding:1.1rem 0;cursor:pointer;font-size:1.15rem;font-family:'Hind Siliguri',sans-serif;transition:all .3s;position:relative;}
+  .unit:hover{background:#1a1a1a;color:#fff;}
+  .unit.selected{background:var(--gold);color:#000;font-weight:700;}
+  .unit.selected::after{content:'✓';position:absolute;top:2px;right:6px;font-size:.75rem;}
+  .unit.sold{background:#0a0a0a;color:#3a3a3a;cursor:not-allowed;}
+  .unit.sold::after{content:'বুকড';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:.6rem;color:var(--brick);}
+  .legend{display:flex;gap:2rem;justify-content:center;margin:2.2rem 0;flex-wrap:wrap;font-size:.85rem;color:var(--gray);}
+  .legend span{display:flex;align-items:center;gap:.5rem;}
+  .legend i{width:14px;height:14px;border-radius:3px;display:inline-block;}
+  .dot-avail{background:#0f0f0f;border:1px solid #333;}
+  .dot-sel{background:var(--gold);}
+  .dot-sold{background:#0a0a0a;border:1px solid #333;}
+
+  .form-container{max-width:600px;margin:3.5rem auto 0;background:var(--card);backdrop-filter:blur(15px);border:1px solid var(--border);padding:3rem;border-radius:10px;box-shadow:0 10px 40px rgba(0,0,0,.4);}
+  .selected-info{text-align:center;color:var(--gold);font-size:1.25rem;margin-bottom:2rem;font-weight:600;min-height:30px;}
+  .form-group{margin-bottom:1.4rem;}
+  .form-group label{display:block;color:var(--gray);margin-bottom:.5rem;font-size:.92rem;}
+  .form-control{width:100%;background:rgba(0,0,0,.3);border:1px solid #333;color:#fff;padding:.85rem;border-radius:4px;font-family:'Hind Siliguri',sans-serif;font-size:1rem;transition:.3s;}
+  .form-control:focus{outline:none;border-color:var(--gold);background:rgba(0,0,0,.5);}
+  .submit-btn{width:100%;padding:1rem;background:var(--gold);color:#000;border:none;font-size:1.05rem;font-weight:700;cursor:pointer;border-radius:4px;transition:.3s;}
+  .submit-btn:hover{box-shadow:0 0 20px var(--gold-soft);}
+
+  /* ===== Pricing ===== */
+  .price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.8rem;max-width:1100px;margin:0 auto;}
+  .price-card{border:1px solid var(--border);border-radius:8px;padding:2.4rem 2rem;background:var(--card);text-align:center;transition:.35s;}
+  .price-card.featured{border-color:var(--gold);position:relative;transform:scale(1.03);}
+  .price-card.featured::before{content:'সবচেয়ে জনপ্রিয়';position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--gold);color:#000;font-size:.75rem;padding:.3rem 1rem;border-radius:20px;font-weight:700;}
+  .price-card:hover{transform:translateY(-6px);}
+  .price-card h3{font-size:1.3rem;margin-bottom:.3rem;}
+  .price-card .size{color:var(--gray);font-size:.9rem;margin-bottom:1.2rem;}
+  .price-card .amount{font-family:'Noto Serif Bengali',serif;font-size:2.1rem;color:var(--gold);margin-bottom:1.5rem;}
+  .price-card .amount small{font-size:.9rem;color:var(--gray);font-family:'Hind Siliguri',sans-serif;}
+  .price-feats{list-style:none;text-align:left;margin-bottom:2rem;display:grid;gap:.6rem;}
+  .price-feats li{color:#ccc;font-size:.92rem;display:flex;gap:.5rem;}
+  .price-feats li::before{content:'✓';color:var(--gold);font-weight:700;}
+
+  /* ===== Location ===== */
+  .location-wrap{display:grid;grid-template-columns:1fr 1fr;gap:3rem;max-width:1200px;margin:0 auto;align-items:stretch;}
+  .location-list{list-style:none;display:grid;gap:1.1rem;align-content:start;}
+  .location-list li{display:flex;gap:1rem;align-items:flex-start;background:var(--card);border:1px solid var(--border);padding:1.1rem 1.3rem;border-radius:6px;}
+  .location-list li .badge2{color:var(--gold);font-weight:700;min-width:60px;}
+  .map-frame{border:1px solid var(--border);border-radius:8px;overflow:hidden;min-height:340px;}
+  .map-frame iframe{width:100%;height:100%;min-height:340px;border:0;filter:invert(92%) hue-rotate(180deg) contrast(90%);}
+
+  /* ===== Testimonials ===== */
+  .testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.8rem;max-width:1100px;margin:0 auto;}
+  .testi-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:2rem;}
+  .stars{color:var(--gold);margin-bottom:.9rem;letter-spacing:2px;}
+  .testi-card p{color:#ddd;line-height:1.8;margin-bottom:1.4rem;font-size:.98rem;}
+  .testi-person{display:flex;align-items:center;gap:.8rem;}
+  .testi-avatar{width:44px;height:44px;border-radius:50%;background:var(--gold-deep);display:flex;align-items:center;justify-content:center;font-family:'Noto Serif Bengali',serif;color:#000;font-weight:700;}
+  .testi-person b{display:block;font-size:.95rem;}
+  .testi-person span{font-size:.8rem;color:var(--gray);}
+
+  /* ===== FAQ ===== */
+  .faq-wrap{max-width:800px;margin:0 auto;display:grid;gap:1rem;}
+  .faq-item{border:1px solid var(--border);border-radius:6px;overflow:hidden;background:var(--card);}
+  .faq-q{padding:1.2rem 1.5rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:600;font-size:1rem;}
+  .faq-q .plus{color:var(--gold);font-size:1.3rem;transition:.3s;}
+  .faq-item.open .plus{transform:rotate(45deg);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;padding:0 1.5rem;}
+  .faq-item.open .faq-a{max-height:200px;padding:0 1.5rem 1.3rem;}
+  .faq-a p{color:var(--gray);line-height:1.8;font-size:.94rem;}
+
+  /* ===== CTA strip ===== */
+  .cta-strip{background:linear-gradient(120deg,#111,#0a0a0a);border-top:1px solid var(--border);border-bottom:1px solid var(--border);text-align:center;padding:4.5rem 5%;}
+  .cta-strip h2{font-size:clamp(1.6rem,4vw,2.3rem);margin-bottom:1rem;}
+  .cta-strip p{color:var(--gray);margin-bottom:2rem;}
+
+  /* ===== Footer ===== */
+  footer{background:#050505;padding:4rem 5% 1.5rem;border-top:1px solid #111;}
+  .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:2.5rem;max-width:1200px;margin:0 auto 3rem;}
+  .footer-col h4{font-size:1.05rem;margin-bottom:1.1rem;color:var(--gold);font-family:'Hind Siliguri',sans-serif;font-weight:700;}
+  .footer-col p, .footer-col a{color:var(--gray);font-size:.92rem;line-height:2;text-decoration:none;display:block;}
+  .footer-col a:hover{color:var(--gold);}
+  .footer-brand p{color:var(--gray);line-height:1.8;font-size:.92rem;margin:1rem 0 1.4rem;}
+  .social-row{display:flex;gap:.8rem;}
+  .social-row a{width:38px;height:38px;border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.9rem;transition:.3s;}
+  .social-row a:hover{border-color:var(--gold);color:var(--gold);}
+  .footer-bottom{text-align:center;border-top:1px solid #161616;padding-top:1.5rem;color:var(--gray-dim);font-size:.82rem;}
+  .footer-bottom a{color:var(--gray-dim);text-decoration:underline;}
+
+  /* ===== Floating WhatsApp ===== */
+  .float-wa{position:fixed;bottom:1.6rem;right:1.6rem;background:#25D366;color:#fff;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem;z-index:999;text-decoration:none;box-shadow:0 8px 25px rgba(0,0,0,.4);animation:pulse2 2.4s infinite;}
+
+  @keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+  @keyframes bounce{0%,100%{transform:translate(-50%,0);}50%{transform:translate(-50%,8px);}}
+  @keyframes scrollLeft{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  @keyframes pulse2{0%{box-shadow:0 0 0 0 rgba(37,211,102,.6);}70%{box-shadow:0 0 0 14px rgba(37,211,102,0);}100%{box-shadow:0 0 0 0 rgba(37,211,102,0);}}
+
+  @media (max-width:900px){
+    .about-wrap,.location-wrap{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+    .gallery-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:140px;}
+  }
+  @media (max-width:768px){
+    .topbar{display:none;}
+    nav ul{display:none;}
+    .burger{display:flex;}
+    .hero h1{font-size:2.4rem;}
+    .units{flex-direction:row;}
+    .hero-stats{gap:0;}
+    .stat{padding:0 1.2rem;}
+    .footer-grid{grid-template-columns:1fr;}
+  }
+</style>
 </head>
 <body>
 
-    <header>
-        <div class="logo">মোজাম্মেল টাওয়ার</div>
-        <nav>
-            <ul>
-                <li><a href="#home">হোম</a></li>
-                <li><a href="#amenities">সুবিধা</a></li>
-                <li><a href="#booking">বুকিং</a></li>
-            </ul>
-        </nav>
-    </header>
+<div class="topbar">
+  <div class="left"><span>📍 রাজউক ভবনের পাশে, ঢাকা</span><span>🕒 প্রতিদিন সকাল ৯টা - রাত ৮টা</span></div>
+  <div class="right"><a href="tel:+8801XXXXXXXXX">📞 +৮৮০ ১XXX-XXXXXX</a><a href="mailto:info@mozammeltower.com">✉️ info@mozammeltower.com</a></div>
+</div>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home" style="padding-top:0; padding-bottom:0; min-height: 100vh;">
-        <div class="hero-content">
-            <span class="tagline">শীঘ্রই আসছে</span>
-            <h1>মোজাম্মেল টাওয়ার</h1>
-            <p>রাজউকের পাশে আভিজাত্যের নতুন সংজ্ঞা। ১০ তলা এক্সক্লুসিভ বিল্ডিং, যেখানে প্রতিটি তলায় রয়েছে ৪টি করে প্রিমিয়াম এপার্টমেন্ট (A, B, C, D)। আধুনিক স্থাপত্যের সাথে চরম আরাম ও নিরাপত্তার নিখুঁত মেলবন্ধন।</p>
-            <a href="#booking" class="btn-gold">আপনার স্বপ্নের ঠিকানা বেছে নিন</a>
-        </div>
-    </section>
+<header>
+  <div class="brand">
+    <div class="brand-mark"><span>ম</span></div>
+    <div class="logo-text">মোজাম্মেল টাওয়ার<small>PREMIUM RESIDENCE</small></div>
+  </div>
+  <nav>
+    <ul>
+      <li><a href="#home">হোম</a></li>
+      <li><a href="#about">পরিচিতি</a></li>
+      <li><a href="#amenities">সুবিধা</a></li>
+      <li><a href="#gallery">গ্যালারি</a></li>
+      <li><a href="#booking">ফ্লোর প্ল্যান</a></li>
+      <li><a href="#pricing">মূল্য তালিকা</a></li>
+      <li><a href="#location">অবস্থান</a></li>
+      <li><a href="#faq">জিজ্ঞাসা</a></li>
+    </ul>
+  </nav>
+  <div class="header-cta">
+    <a href="tel:+8801XXXXXXXXX" class="btn-call">📞 কল করুন</a>
+    <div class="burger" id="burger"><span></span><span></span><span></span></div>
+  </div>
+</header>
 
-    <!-- Amenities Section -->
-    <section id="amenities">
-        <div class="section-header reveal">
-            <h2>প্রিমিয়াম লাইফস্টাইল</h2>
-            <div class="divider"></div>
-            <p>আন্তর্জাতিক মানের সুযোগ-সুবিধা</p>
-        </div>
-        <div class="amenities-grid">
-            <div class="glass-card reveal">
-                <div class="icon">🏙️</div>
-                <h3>মডার্ন আর্কিটেকচার</h3>
-                <p>আন্তর্জাতিক স্থপতি দ্বারা ডিজাইনকৃত ফ্লোর প্ল্যান।</p>
-            </div>
-            <div class="glass-card reveal">
-                <div class="icon">🛗</div>
-                <h3>স্পিড লিফট</h3>
-                <p>আধুনিক প্রযুক্তির দ্রুতগতির ও নিরাপদ লিফট।</p>
-            </div>
-            <div class="glass-card reveal">
-                <div class="icon">🌳</div>
-                <h3>স্কাই গার্ডেন</h3>
-                <p>ছাদে সম্পূর্ণ আধুনিক স্কাই গার্ডেন ও কমিউনিটি স্পেস।</p>
-            </div>
-            <div class="glass-card reveal">
-                <div class="icon">🔐</div>
-                <h3>স্মার্ট সিকিউরিটি</h3>
-                <p>২৪/৭ সিসিটিভি ও ডিজিটাল ইন্টারকম সিস্টেম।</p>
-            </div>
-        </div>
-    </section>
+<!-- Hero -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <span class="tagline">প্রি-বুকিং চলছে</span>
+    <h1>মোজাম্মেল টাওয়ার</h1>
+    <p>রাজউকের পাশে আভিজাত্যের নতুন সংজ্ঞা। ১০ তলা এক্সক্লুসিভ আবাসিক ভবন, প্রতিটি তলায় ৪টি করে প্রিমিয়াম এপার্টমেন্ট (A, B, C, D)। আধুনিক স্থাপত্য, সর্বোচ্চ নিরাপত্তা ও প্রকৃত আভিজাত্যের নিখুঁত মেলবন্ধন।</p>
+    <div class="hero-btns">
+      <a href="#booking" class="btn-gold">ফ্লোর প্ল্যান দেখুন</a>
+      <a href="#contact" class="btn-outline">সরাসরি যোগাযোগ করুন</a>
+    </div>
+  </div>
+  <div class="hero-stats reveal active">
+    <div class="stat"><b>১০</b><span>তলা ভবন</span></div>
+    <div class="stat"><b>৪০</b><span>মোট ইউনিট</span></div>
+    <div class="stat"><b>১৪০০+</b><span>বর্গফুট (প্রতি ইউনিট)</span></div>
+    <div class="stat"><b>২০২৬</b><span>হস্তান্তরের বছর</span></div>
+  </div>
+  <div class="scroll-cue"><span>স্ক্রল করুন</span><div class="line"></div></div>
+</section>
 
-    <!-- Booking & Interactive Selection -->
-    <section class="booking-bg" id="booking">
-        <div class="section-header reveal">
-            <h2>এপার্টমেন্ট বুকিং</h2>
-            <div class="divider"></div>
-            <p>আপনার পছন্দের ফ্লোর ও ইউনিট নির্বাচন করুন</p>
-        </div>
+<div class="marquee-strip">
+  <div class="track">
+    <span>✦ রাজউক অনুমোদিত ডিজাইন</span><span>✦ ২৪/৭ নিরাপত্তা ও সিসিটিভি</span><span>✦ সহজ কিস্তি সুবিধা</span><span>✦ প্রিমিয়াম লোকেশন</span><span>✦ রাজউক অনুমোদিত ডিজাইন</span><span>✦ ২৪/৭ নিরাপত্তা ও সিসিটিভি</span><span>✦ সহজ কিস্তি সুবিধা</span><span>✦ প্রিমিয়াম লোকেশন</span>
+  </div>
+</div>
 
-        <div class="building-wrapper reveal" id="buildingWrapper">
-            <!-- JS Generates 10 Floors Here -->
-        </div>
+<!-- About -->
+<section id="about">
+  <div class="section-header reveal">
+    <span class="eyebrow">আমাদের পরিচিতি</span>
+    <h2>কেন মোজাম্মেল টাওয়ার</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="about-wrap">
+    <div class="about-img reveal">
+      <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?q=80&w=1200&auto=format&fit=crop" alt="মোজাম্মেল টাওয়ার ভবন">
+      <div class="badge"><b>১৫+</b><span>বছরের নির্মাণ অভিজ্ঞতা</span></div>
+    </div>
+    <div class="about-text reveal">
+      <p>মোজাম্মেল টাওয়ার শুধু একটি ভবন নয় — এটি একটি জীবনযাত্রার প্রতিশ্রুতি। রাজউক ভবনের নিকটবর্তী এই কৌশলগত অবস্থানে গড়ে উঠছে ১০ তলা বিশিষ্ট এক্সক্লুসিভ আবাসিক কমপ্লেক্স, যেখানে প্রতিটি ইউনিট ডিজাইন করা হয়েছে সর্বোচ্চ আলো-বাতাস, প্রাইভেসি ও আধুনিকতার কথা মাথায় রেখে।</p>
+      <p>আমাদের লক্ষ্য একটাই — যারা শহরের কেন্দ্রে থেকেও নিরিবিলি, নিরাপদ ও মর্যাদাপূর্ণ জীবনযাপন চান, তাদের জন্য নির্ভরযোগ্য ঠিকানা তৈরি করা।</p>
+      <ul class="why-list">
+        <li><i>✓</i> রাজউক অনুমোদিত নকশা ও বৈধ কাগজপত্র</li>
+        <li><i>✓</i> ভূমিকম্প সহনশীল স্ট্রাকচারাল ডিজাইন</li>
+        <li><i>✓</i> সহজ কিস্তিতে পরিশোধের সুবিধা</li>
+        <li><i>✓</i> নির্ধারিত সময়ে হস্তান্তরের নিশ্চয়তা</li>
+      </ul>
+    </div>
+  </div>
+</section>
 
-        <div class="form-container reveal">
-            <div class="selected-info" id="selectedInfo">
-                অনুগ্রহ করে একটি ইউনিট নির্বাচন করুন
-            </div>
-            <form id="bookingForm">
-                <input type="hidden" id="hiddenUnit" required>
-                <div class="form-group">
-                    <label>আপনার নাম</label>
-                    <input type="text" class="form-control" placeholder="পুরো নাম লিখুন" required>
-                </div>
-                <div class="form-group">
-                    <label>মোবাইল নম্বর</label>
-                    <input type="tel" class="form-control" placeholder="01XXXXXXXXX" required>
-                </div>
-                <div class="form-group">
-                    <label>ইমেইল ঠিকানা</label>
-                    <input type="email" class="form-control" placeholder="আপনার ইমেইল" required>
-                </div>
-                <button type="submit" class="submit-btn">বুকিং নিশ্চিত করুন</button>
-            </form>
-            <div id="successMsg" style="display:none; text-align:center; margin-top:1.5rem; color:var(--gold); font-size:1.2rem;">
-                ধন্যবাদ! আপনার বুকিংয়ের অনুরোধ সফলভাবে জমা হয়েছে। আমাদের প্রতিনিধি শীঘ্রই আপনার সাথে যোগাযোগ করবেন।
-            </div>
-        </div>
-    </section>
+<!-- Amenities -->
+<section id="amenities">
+  <div class="section-header reveal">
+    <span class="eyebrow">সুযোগ-সুবিধা</span>
+    <h2>প্রিমিয়াম লাইফস্টাইল</h2>
+    <div class="divider"></div>
+    <p class="section-sub">আন্তর্জাতিক মানের প্রতিটি সুবিধা রাখা হয়েছে বাসিন্দাদের আরাম ও নিরাপত্তার কথা ভেবে।</p>
+  </div>
+  <div class="amenities-grid">
+    <div class="glass-card reveal"><div class="icon">🏙️</div><h3>মডার্ন আর্কিটেকচার</h3><p>অভিজ্ঞ স্থপতিদের ডিজাইনকৃত প্রশস্ত ও কার্যকরী ফ্লোর প্ল্যান।</p></div>
+    <div class="glass-card reveal"><div class="icon">🛗</div><h3>স্পিড লিফট</h3><p>জেনারেটর ব্যাকআপসহ দ্রুতগতির নিরাপদ লিফট সুবিধা।</p></div>
+    <div class="glass-card reveal"><div class="icon">🌳</div><h3>স্কাই গার্ডেন</h3><p>ছাদে সম্পূর্ণ আধুনিক স্কাই গার্ডেন ও কমিউনিটি স্পেস।</p></div>
+    <div class="glass-card reveal"><div class="icon">🔐</div><h3>স্মার্ট সিকিউরিটি</h3><p>২৪/৭ সিসিটিভি নজরদারি ও ডিজিটাল ইন্টারকম সিস্টেম।</p></div>
+    <div class="glass-card reveal"><div class="icon">🚗</div><h3>আন্ডারগ্রাউন্ড পার্কিং</h3><p>প্রতিটি ইউনিটের জন্য নির্ধারিত গাড়ি পার্কিং স্পেস।</p></div>
+    <div class="glass-card reveal"><div class="icon">⚡</div><h3>নিরবচ্ছিন্ন বিদ্যুৎ</h3><p>সম্পূর্ণ ভবনের জন্য স্বয়ংক্রিয় জেনারেটর ব্যাকআপ ব্যবস্থা।</p></div>
+    <div class="glass-card reveal"><div class="icon">💧</div><h3>ওয়াসা ও রিজার্ভ ট্যাংক</h3><p>নিরবচ্ছিন্ন পানি সরবরাহের জন্য বড় রিজার্ভ ট্যাংক।</p></div>
+    <div class="glass-card reveal"><div class="icon">🕌</div><h3>নামাজের ব্যবস্থা</h3><p>ভবনের নিচতলায় পুরুষদের জন্য পৃথক নামাজের স্থান।</p></div>
+  </div>
+</section>
 
-    <footer>
-        <h3>মোজাম্মেল টাওয়ার</h3>
-        <p>ঠিকানা: রাজউক ভবনের পাশে, ঢাকা।</p>
-        <p>ফোন: +880 1XXXXXXXXX | ইমেইল: info@mozammeltower.com</p>
-        <p style="font-size: 0.8rem; color: #444; margin-top: 1rem;">&copy; 2024 মোজাম্মেল টাওয়ার. সর্বস্বত্ব সংরক্ষিত।</p>
-    </footer>
+<!-- Gallery -->
+<section id="gallery" style="background:var(--bg2);">
+  <div class="section-header reveal">
+    <span class="eyebrow">দৃষ্টিনন্দন</span>
+    <h2>প্রজেক্ট গ্যালারি</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="gallery-grid reveal">
+    <img class="g-tall" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop" alt="ভবনের সম্মুখভাগ">
+    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=800&auto=format&fit=crop" alt="বসার ঘর">
+    <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=800&auto=format&fit=crop" alt="বেডরুম">
+    <img class="g-wide" src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=1200&auto=format&fit=crop" alt="রান্নাঘর">
+    <img src="https://images.unsplash.com/photo-1600607687644-aac4c3eac7f4?q=80&w=800&auto=format&fit=crop" alt="বাথরুম">
+    <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=800&auto=format&fit=crop" alt="বারান্দা">
+  </div>
+</section>
 
-    <script>
-        // 1. Generate 10 Floors Dynamically
-        const wrapper = document.getElementById('buildingWrapper');
-        const infoDisplay = document.getElementById('selectedInfo');
-        const hiddenInput = document.getElementById('hiddenUnit');
+<!-- Booking / floor plan -->
+<section class="booking-bg" id="booking">
+  <div class="section-header reveal">
+    <span class="eyebrow">উপলব্ধ ইউনিট</span>
+    <h2>ফ্লোর প্ল্যান ও বুকিং</h2>
+    <div class="divider"></div>
+    <p class="section-sub">আপনার পছন্দের ফ্লোর ও ইউনিট নির্বাচন করে নিচের ফর্মে তথ্য দিন — আমাদের প্রতিনিধি যোগাযোগ করবেন।</p>
+  </div>
 
-        const bengaliNumbers = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯', '১০'];
-        
-        for (let i = 10; i >= 1; i--) {
-            let floorDiv = document.createElement('div');
-            floorDiv.className = 'floor-block';
-            floorDiv.innerHTML = `
-                <div class="floor-num">${bengaliNumbers[i]} তলা</div>
-                <div class="units">
-                    <button class="unit" data-floor="${bengaliNumbers[i]}" data-unit="A">A</button>
-                    <button class="unit" data-floor="${bengaliNumbers[i]}" data-unit="B">B</button>
-                    <button class="unit" data-floor="${bengaliNumbers[i]}" data-unit="C">C</button>
-                    <button class="unit" data-floor="${bengaliNumbers[i]}" data-unit="D">D</button>
-                </div>
-            `;
-            wrapper.appendChild(floorDiv);
-        }
+  <div class="legend reveal">
+    <span><i class="dot-avail"></i> খালি আছে</span>
+    <span><i class="dot-sel"></i> নির্বাচিত</span>
+    <span><i class="dot-sold"></i> বুকড</span>
+  </div>
 
-        // 2. Handle Unit Selection
-        document.querySelectorAll('.unit').forEach(btn => {
-            btn.addEventListener('click', function() {
-                if(this.classList.contains('disabled')) return;
-                
-                // Remove previous selection
-                document.querySelectorAll('.unit').forEach(b => b.classList.remove('selected'));
-                
-                // Add new selection
-                this.classList.add('selected');
-                const floor = this.getAttribute('data-floor');
-                const unit = this.getAttribute('data-unit');
-                
-                infoDisplay.textContent = `নির্বাচিত: ${floor} তলা - ইউনিট ${unit}`;
-                hiddenInput.value = `${floor} তলা - ইউনিট ${unit}`;
-            });
-        });
+  <div class="building-wrapper reveal" id="buildingWrapper"></div>
 
-        // 3. Handle Form Submit
-        document.getElementById('bookingForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            if(!hiddenInput.value) {
-                alert('দয়া করে আগে আপনার পছন্দের ফ্ল্যাট নির্বাচন করুন!');
-                return;
-            }
-            document.getElementById('bookingForm').style.display = 'none';
-            document.getElementById('successMsg').style.display = 'block';
-        });
+  <div class="form-container reveal">
+    <div class="selected-info" id="selectedInfo">অনুগ্রহ করে একটি ইউনিট নির্বাচন করুন</div>
+    <form id="bookingForm">
+      <input type="hidden" id="hiddenUnit" required>
+      <div class="form-group"><label>আপনার নাম</label><input type="text" class="form-control" placeholder="পুরো নাম লিখুন" required></div>
+      <div class="form-group"><label>মোবাইল নম্বর</label><input type="tel" class="form-control" placeholder="01XXXXXXXXX" required></div>
+      <div class="form-group"><label>ইমেইল ঠিকানা</label><input type="email" class="form-control" placeholder="আপনার ইমেইল" required></div>
+      <button type="submit" class="submit-btn">বুকিং নিশ্চিত করুন</button>
+    </form>
+    <div id="successMsg" style="display:none;text-align:center;margin-top:1.5rem;color:var(--gold);font-size:1.15rem;">
+      ধন্যবাদ! আপনার বুকিং অনুরোধ সফলভাবে জমা হয়েছে। আমাদের প্রতিনিধি শীঘ্রই যোগাযোগ করবেন।
+    </div>
+  </div>
+</section>
 
-        // 4. Scroll Reveal Animation
-        const reveals = document.querySelectorAll('.reveal');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if(entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, { threshold: 0.15 });
+<!-- Pricing -->
+<section id="pricing">
+  <div class="section-header reveal">
+    <span class="eyebrow">মূল্য পরিকল্পনা</span>
+    <h2>স্বচ্ছ মূল্য তালিকা</h2>
+    <div class="divider"></div>
+    <p class="section-sub">নিচের প্যাকেজ শুধুমাত্র নির্দেশক মূল্য — সঠিক ইউনিট ও তলা অনুযায়ী চূড়ান্ত মূল্য জানতে যোগাযোগ করুন।</p>
+  </div>
+  <div class="price-grid">
+    <div class="price-card reveal">
+      <h3>স্ট্যান্ডার্ড ইউনিট</h3>
+      <div class="size">১৪০০ বর্গফুট · ৩ বেড, ২ বাথ</div>
+      <div class="amount">৳৮৫ <small>লাখ থেকে শুরু</small></div>
+      <ul class="price-feats"><li>নিচতলা - ৪র্থ তলা</li><li>স্ট্যান্ডার্ড ফিনিশিং</li><li>১টি পার্কিং স্পেস</li></ul>
+      <a href="#booking" class="btn-outline" style="display:block;">ইউনিট দেখুন</a>
+    </div>
+    <div class="price-card featured reveal">
+      <h3>প্রিমিয়াম ইউনিট</h3>
+      <div class="size">১৬৫০ বর্গফুট · ৩ বেড, ৩ বাথ</div>
+      <div class="amount">৳১.১৫ <small>কোটি থেকে শুরু</small></div>
+      <ul class="price-feats"><li>৫ম - ৭ম তলা</li><li>প্রিমিয়াম ফিনিশিং</li><li>১টি পার্কিং + স্টোরেজ</li></ul>
+      <a href="#booking" class="btn-gold" style="display:block;">ইউনিট দেখুন</a>
+    </div>
+    <div class="price-card reveal">
+      <h3>পেন্টহাউস ইউনিট</h3>
+      <div class="size">২০০০+ বর্গফুট · ৪ বেড, ৪ বাথ</div>
+      <div class="amount">৳১.৬৫ <small>কোটি থেকে শুরু</small></div>
+      <ul class="price-feats"><li>৮ম - ১০ম তলা</li><li>স্কাই গার্ডেন এক্সেস</li><li>২টি পার্কিং স্পেস</li></ul>
+      <a href="#booking" class="btn-outline" style="display:block;">ইউনিট দেখুন</a>
+    </div>
+  </div>
+</section>
 
-        reveals.forEach(reveal => {
-            observer.observe(reveal);
-        });
-    </script>
+<!-- Location -->
+<section id="location" style="background:var(--bg2);">
+  <div class="section-header reveal">
+    <span class="eyebrow">প্রিমিয়াম লোকেশন</span>
+    <h2>যেখানে সবকিছু হাতের নাগালে</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="location-wrap">
+    <ul class="location-list reveal">
+      <li><span class="badge2">২ মিনিট</span> রাজউক ভবন</li>
+      <li><span class="badge2">৫ মিনিট</span> প্রধান সড়ক ও বাস স্টপেজ</li>
+      <li><span class="badge2">৭ মিনিট</span> স্কুল ও কলেজ</li>
+      <li><span class="badge2">১০ মিনিট</span> হাসপাতাল ও ক্লিনিক</li>
+      <li><span class="badge2">১০ মিনিট</span> শপিং মল ও সুপারশপ</li>
+      <li><span class="badge2">১৫ মিনিট</span> মসজিদ ও ঈদগাহ ময়দান</li>
+    </ul>
+    <div class="map-frame reveal">
+      <iframe src="https://www.google.com/maps?q=Dhaka&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section id="testimonials">
+  <div class="section-header reveal">
+    <span class="eyebrow">গ্রাহকের অভিজ্ঞতা</span>
+    <h2>যারা আমাদের বিশ্বাস করেছেন</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <div class="stars">★★★★★</div>
+      <p>প্রতিশ্রুতি অনুযায়ী কাজের মান এবং সময়মতো আপডেট পেয়েছি। বুকিং প্রক্রিয়া ছিল খুবই স্বচ্ছ ও ঝামেলাহীন।</p>
+      <div class="testi-person"><div class="testi-avatar">র</div><div><b>রফিকুল ইসলাম</b><span>বাসিন্দা, ৫ম তলা</span></div></div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="stars">★★★★★</div>
+      <p>লোকেশন এবং নিরাপত্তা ব্যবস্থা দেখে সিদ্ধান্ত নিতে দেরি হয়নি। পরিবার নিয়ে থাকার জন্য আদর্শ জায়গা।</p>
+      <div class="testi-person"><div class="testi-avatar">ন</div><div><b>নাজমা বেগম</b><span>বাসিন্দা, ৩য় তলা</span></div></div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="stars">★★★★★</div>
+      <p>কিস্তি সুবিধা থাকায় বুকিং দেওয়া সহজ হয়েছে। টিম সবসময় প্রশ্নের উত্তর দ্রুত দিয়েছে।</p>
+      <div class="testi-person"><div class="testi-avatar">স</div><div><b>সাইফুল হক</b><span>বুকিং সম্পন্নকারী গ্রাহক</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" style="background:var(--bg2);">
+  <div class="section-header reveal">
+    <span class="eyebrow">জিজ্ঞাসা</span>
+    <h2>সাধারণ প্রশ্নোত্তর</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="faq-wrap reveal">
+    <div class="faq-item">
+      <div class="faq-q">বুকিং দিতে কত টাকা জমা দিতে হয়? <span class="plus">+</span></div>
+      <div class="faq-a"><p>প্রাথমিক বুকিং নিশ্চিত করতে মোট মূল্যের ১০% জমা দিতে হয়। বাকি অর্থ সহজ কিস্তিতে পরিশোধ করা যাবে।</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">হস্তান্তর কবে হবে? <span class="plus">+</span></div>
+      <div class="faq-a"><p>প্রকল্পের নির্মাণকাজ চলমান রয়েছে এবং ২০২৬ সালের মধ্যে হস্তান্তরের লক্ষ্যমাত্রা নির্ধারিত আছে।</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">কাগজপত্র কি রাজউক অনুমোদিত? <span class="plus">+</span></div>
+      <div class="faq-a"><p>হ্যাঁ, প্রকল্পের সকল নকশা ও কাগজপত্র রাজউক কর্তৃক অনুমোদিত এবং আইনগতভাবে বৈধ।</p></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">ব্যাংক লোন সুবিধা আছে কি? <span class="plus">+</span></div>
+      <div class="faq-a"><p>হ্যাঁ, নির্ধারিত ব্যাংকের মাধ্যমে হোম লোন সুবিধা পেতে আমাদের টিম সহায়তা করে থাকে।</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA strip -->
+<section class="cta-strip">
+  <h2>আপনার স্বপ্নের ঠিকানা আজই বুক করুন</h2>
+  <p>সীমিত সংখ্যক ইউনিট বাকি আছে — দেরি না করে যোগাযোগ করুন আমাদের সেলস টিমের সাথে।</p>
+  <div class="hero-btns" style="justify-content:center;">
+    <a href="tel:+8801XXXXXXXXX" class="btn-gold">📞 এখনই কল করুন</a>
+    <a href="#booking" class="btn-outline">ফ্লোর প্ল্যান দেখুন</a>
+  </div>
+</section>
+
+<!-- Contact / Footer -->
+<footer id="contact">
+  <div class="footer-grid">
+    <div class="footer-col footer-brand">
+      <div class="brand">
+        <div class="brand-mark"><span>ম</span></div>
+        <div class="logo-text">মোজাম্মেল টাওয়ার</div>
+      </div>
+      <p>রাজউকের পাশে গড়ে ওঠা একটি প্রিমিয়াম আবাসিক প্রকল্প — আধুনিকতা, নিরাপত্তা ও আভিজাত্যের নিখুঁত সমন্বয়।</p>
+      <div class="social-row">
+        <a href="#" aria-label="Facebook">f</a>
+        <a href="#" aria-label="YouTube">▶</a>
+        <a href="#" aria-label="WhatsApp">📞</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>কুইক লিংক</h4>
+      <a href="#about">আমাদের সম্পর্কে</a>
+      <a href="#amenities">সুযোগ-সুবিধা</a>
+      <a href="#booking">ফ্লোর প্ল্যান</a>
+      <a href="#pricing">মূল্য তালিকা</a>
+      <a href="#faq">জিজ্ঞাসা</a>
+    </div>
+    <div class="footer-col">
+      <h4>ইউনিট তথ্য</h4>
+      <p>১০ তলা · ৪০ ইউনিট</p>
+      <p>প্রতি ইউনিট ১৪০০-২০০০+ বর্গফুট</p>
+      <p>৩-৪ বেডরুম, ২-৪ বাথরুম</p>
+      <p>হস্তান্তর: ২০২৬</p>
+    </div>
+    <div class="footer-col">
+      <h4>যোগাযোগ</h4>
+      <p>ঠিকানা: রাজউক ভবনের পাশে, ঢাকা</p>
+      <a href="tel:+8801XXXXXXXXX">📞 +৮৮০ ১XXX-XXXXXX</a>
+      <a href="mailto:info@mozammeltower.com">✉️ info@mozammeltower.com</a>
+      <p>সময়: সকাল ৯টা - রাত ৮টা (প্রতিদিন)</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; ২০২৬ মোজাম্মেল টাওয়ার. সর্বস্বত্ব সংরক্ষিত। | Developed by <a href="https://mtstudioai.com" target="_blank">MT Studio</a>
+  </div>
+</footer>
+
+<a href="https://wa.me/8801XXXXXXXXX" class="float-wa" target="_blank" aria-label="WhatsApp">💬</a>
+
+<script>
+  // Mobile menu
+  const burger = document.getElementById('burger');
+  const navUl = document.querySelector('nav ul');
+  burger.addEventListener('click', () => {
+    navUl.style.display = navUl.style.display === 'flex' ? 'none' : 'flex';
+    navUl.style.flexDirection = 'column';
+    navUl.style.position = 'fixed';
+    navUl.style.top = '70px';
+    navUl.style.right = '5%';
+    navUl.style.background = '#0d0d0d';
+    navUl.style.border = '1px solid #222';
+    navUl.style.padding = '1.2rem 1.6rem';
+    navUl.style.borderRadius = '8px';
+    navUl.style.gap = '1rem';
+    navUl.style.zIndex = '999';
+  });
+  navUl.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { navUl.style.display = 'none'; }));
+
+  // Floor generation — some units randomly pre-sold for realism
+  const wrapper = document.getElementById('buildingWrapper');
+  const infoDisplay = document.getElementById('selectedInfo');
+  const hiddenInput = document.getElementById('hiddenUnit');
+  const bn = ['০','১','২','৩','৪','৫','৬','৭','৮','৯','১০'];
+  const soldSet = new Set(['3-B','5-A','7-D','9-C','10-A','10-B']);
+
+  for (let i = 10; i >= 1; i--) {
+    const floorDiv = document.createElement('div');
+    floorDiv.className = 'floor-block';
+    const unitsHtml = ['A','B','C','D'].map(u => {
+      const key = i + '-' + u;
+      const sold = soldSet.has(key) ? ' sold' : '';
+      return `<button class="unit${sold}" data-floor="${bn[i]}" data-unit="${u}" ${sold ? 'disabled' : ''}>${u}</button>`;
+    }).join('');
+    floorDiv.innerHTML = `<div class="floor-num">${bn[i]}<small>তলা</small></div><div class="units">${unitsHtml}</div>`;
+    wrapper.appendChild(floorDiv);
+  }
+
+  document.querySelectorAll('.unit:not(.sold)').forEach(btn => {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.unit').forEach(b => b.classList.remove('selected'));
+      this.classList.add('selected');
+      const floor = this.getAttribute('data-floor');
+      const unit = this.getAttribute('data-unit');
+      infoDisplay.textContent = `নির্বাচিত: ${floor} তলা - ইউনিট ${unit}`;
+      hiddenInput.value = `${floor} তলা - ইউনিট ${unit}`;
+    });
+  });
+
+  document.getElementById('bookingForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!hiddenInput.value) { alert('দয়া করে আগে আপনার পছন্দের ফ্ল্যাট নির্বাচন করুন!'); return; }
+    this.style.display = 'none';
+    document.getElementById('successMsg').style.display = 'block';
+  });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q').addEventListener('click', () => {
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+</script>
 </body>
 </html>
